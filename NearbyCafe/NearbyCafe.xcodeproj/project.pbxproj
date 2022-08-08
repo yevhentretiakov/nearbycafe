@@ -16,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		73B55A23FA31396531323E39 /* Pods-NearbyCafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearbyCafe.release.xcconfig"; path = "Target Support Files/Pods-NearbyCafe/Pods-NearbyCafe.release.xcconfig"; sourceTree = "<group>"; };
 		CE30DB4828A10743007F4DC0 /* NearbyCafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearbyCafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE30DB4B28A10743007F4DC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE30DB4D28A10743007F4DC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +25,7 @@
 		CE30DB5928A10746007F4DC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE30DB5F28A10A4D007F4DC0 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CE30DB6028A10A4D007F4DC0 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		EBC5BC7213C4EA9B3643D911 /* Pods-NearbyCafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearbyCafe.debug.xcconfig"; path = "Target Support Files/Pods-NearbyCafe/Pods-NearbyCafe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,11 +39,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		91F2C1CFB2D9DC3233A57335 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9B44A8DA4B5B7CEAEE3BB05C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EBC5BC7213C4EA9B3643D911 /* Pods-NearbyCafe.debug.xcconfig */,
+				73B55A23FA31396531323E39 /* Pods-NearbyCafe.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CE30DB3F28A10743007F4DC0 = {
 			isa = PBXGroup;
 			children = (
 				CE30DB4A28A10743007F4DC0 /* NearbyCafe */,
 				CE30DB4928A10743007F4DC0 /* Products */,
+				9B44A8DA4B5B7CEAEE3BB05C /* Pods */,
+				91F2C1CFB2D9DC3233A57335 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,9 +110,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE30DB5C28A10746007F4DC0 /* Build configuration list for PBXNativeTarget "NearbyCafe" */;
 			buildPhases = (
+				A4B5A70660260ED04DCCAB75 /* [CP] Check Pods Manifest.lock */,
 				CE30DB4428A10743007F4DC0 /* Sources */,
 				CE30DB4528A10743007F4DC0 /* Frameworks */,
 				CE30DB4628A10743007F4DC0 /* Resources */,
+				CF9EA44610F9452EFB102596 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -148,6 +170,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A4B5A70660260ED04DCCAB75 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NearbyCafe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF9EA44610F9452EFB102596 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NearbyCafe/Pods-NearbyCafe-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NearbyCafe/Pods-NearbyCafe-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NearbyCafe/Pods-NearbyCafe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CE30DB4428A10743007F4DC0 /* Sources */ = {
@@ -290,6 +354,7 @@
 		};
 		CE30DB5D28A10746007F4DC0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EBC5BC7213C4EA9B3643D911 /* Pods-NearbyCafe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -317,6 +382,7 @@
 		};
 		CE30DB5E28A10746007F4DC0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73B55A23FA31396531323E39 /* Pods-NearbyCafe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
