@@ -13,9 +13,15 @@ import GooglePlaces
 class MapViewController: UIViewController {
     
     private var locationManager = CLLocationManager()
-    var mapView: GMSMapView!
-    let zoomLevel: Float = 12
-    var defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
+    private var networkService = NetworkService()
+    
+    private var mapView: GMSMapView!
+    private var mapNeedUpdation = false
+    
+    private var typesOfPlaces = ["cafe", "restaurant"]
+    private let searchRadius = 5000
+    private let zoomLevel: Float = 12
+    private var defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
     
     private lazy var centerButton: UIButton = {
         let button = UIButton()
@@ -71,18 +77,17 @@ class MapViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
-        // Check if user denied access earlier
         let status = locationManager.authorizationStatus
-        if isBadLocationStatus(status) {
+        
+        // Check if user denied acces
+        if status == .denied {
             showAlert()
-        }
-    }
-    
-    private func isBadLocationStatus(_ status: CLAuthorizationStatus) -> Bool {
-        if status == .denied || status == .restricted {
-            return true
-        } else {
-            return false
+        // Check if user have restricted access it mean he cant change location status in settings.
+        // So just show map with default coordinates for him and hide center button.
+        // Without this check user with restricted status will not see anything.
+        } else if status == .restricted {
+            centerButton.isHidden = true
+            mapView.isHidden = false
         }
     }
     
@@ -113,15 +118,46 @@ class MapViewController: UIViewController {
         marker.icon = GMSMarker.markerImage(with: .black)
         marker.title = "Im Here"
         marker.map = mapView
+        
+        // Get places
+        for type in typesOfPlaces {
+            networkService.getNearbyPlaces(
+                latitude: defaultLocation.coordinate.latitude,
+                longitude: defaultLocation.coordinate.longitude,
+                radius: searchRadius,
+                type: type) { [weak self] result in
+                    guard let self = self else { return }
+                    
+                    switch result {
+                    case .success(let receivedPlaces):
+                        
+                        if let receivedPlaces = receivedPlaces {
+                        
+                            // Place markers for places
+                            DispatchQueue.main.async {
+                                for place in receivedPlaces {
+                                    let position = CLLocationCoordinate2D(latitude: place.geometry.location.lat, longitude:  place.geometry.location.lng)
+                                    let marker = GMSMarker(position: position)
+                                    marker.title = place.name
+                                    marker.map = self.mapView
+                                }
+                            }
+                        }
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+        }
     }
     
     @objc private func centerButtonTapped() {
         
-        // Check if app have access to user locatin
+        // Check if app have access to user location
         let status = locationManager.authorizationStatus
-        if isBadLocationStatus(status) || status == .notDetermined {
+        if status == .denied || status == .notDetermined {
             showAlert()
         } else {
+            placeMarkers(latitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude)
             let camera = GMSCameraPosition.camera(
                 withLatitude: defaultLocation.coordinate.latitude,
                 longitude: defaultLocation.coordinate.longitude,
@@ -143,29 +179,32 @@ extension MapViewController: CLLocationManagerDelegate {
             longitude: location.coordinate.longitude
         )
         
-        // Move map camera to new location
-        let camera = GMSCameraPosition.camera(
-            withLatitude: defaultLocation.coordinate.latitude,
-            longitude: defaultLocation.coordinate.longitude,
-            zoom: zoomLevel
-        )
-
-        if mapView.isHidden {
+        if mapView.isHidden || mapNeedUpdation {
+            // Move map camera to user location
+            let camera = GMSCameraPosition.camera(
+                withLatitude: defaultLocation.coordinate.latitude,
+                longitude: defaultLocation.coordinate.longitude,
+                zoom: zoomLevel
+            )
             mapView.camera = camera
+            
+            placeMarkers(
+                latitude: defaultLocation.coordinate.latitude,
+                longitude: defaultLocation.coordinate.longitude
+            )
+            
+            mapNeedUpdation = false
             mapView.isHidden = false
-        } else {
-            mapView.animate(to: camera)
         }
-        
-        placeMarkers(
-            latitude: defaultLocation.coordinate.latitude,
-            longitude: defaultLocation.coordinate.longitude
-        )
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if isBadLocationStatus(status) || status == .notDetermined {
+        if status == .denied || status == .notDetermined {
             showAlert()
+        } else if !mapView.isHidden && (status == .authorizedWhenInUse || status == .authorizedAlways) {
+            // To automaticaly update already showed map with default coordinates on to map base with user coordinates.
+            // Basically after user changed location access in settings and come back to app.
+            mapNeedUpdation = true
         }
     }
 }
