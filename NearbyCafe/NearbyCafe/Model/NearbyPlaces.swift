@@ -7,11 +7,12 @@
 
 import Foundation
 
-struct NearbyPlaces: Codable {
+struct NearbyPlacesResults: Codable {
     let results: [Place]
 }
 
 struct Place: Codable {
+    let place_id: String
     let name: String
     let geometry: Geometry
 }

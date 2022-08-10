@@ -7,33 +7,61 @@
 
 import UIKit
 
-protocol NetworkServiceProtocol {
-    func getNearbyPlaces(latitude: Double, longitude: Double, radius: Int, type: String, completion: @escaping (Result<[Place]?, Error>) -> Void)
+enum ApiEndpoint {
+    case getNearbyPlaces(latitude: Double, longitude: Double, radius: Int, type: String)
+    case getPlaceDetails(placeID: String)
 }
 
-class NetworkService: NetworkServiceProtocol {
+protocol HTTPRequest {
+    var url: String { get }
+}
+
+extension ApiEndpoint: HTTPRequest {
+    var url: String {
+        switch self {
+        case .getNearbyPlaces(let latitude, let longitude, let radius, let type):
+            let baseURL = "https://maps.googleapis.com/maps/api/place"
+            let path = "/nearbysearch/json?location=\(latitude),\(longitude)&radius=\(radius)&type=\(type)&key=\(APIKeys.gmap)"
+            return baseURL + path
+        case .getPlaceDetails(let placeID):
+            let baseURL = "https://maps.googleapis.com/maps/api/place"
+            let path = "/details/json?place_id=\(placeID)&fields=formatted_address&key=\(APIKeys.gmap)"
+            return baseURL + path
+        }
+    }
+}
+
+class NetworkService {
     
-    func getNearbyPlaces(latitude: Double, longitude: Double, radius: Int, type: String, completion: @escaping (Result<[Place]?, Error>) -> Void) {
+    func fetch<T: Decodable>(_ returnType: T.Type, from endpoint: ApiEndpoint, completion: @escaping (Result<T?, ErrorMessage>) -> Void) {
         
-        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(latitude)%2C\(longitude)&radius=\(radius)&type=\(type)&key=\(APIKeys.gmap)"
-        
-        guard let url = URL(string: urlString) else { return }
+        guard let url = URL(string: endpoint.url) else {
+            completion(.failure(.badURL))
+            return
+        }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                completion(.failure(error))
+            if error != nil {
+                completion(.failure(.unableToComplete))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completion(.failure(.invalidResponse))
+                return
             }
             
             guard let data = data else {
+                completion(.failure(.invalidData))
                 return
             }
             
             do {
                 let decoder = JSONDecoder()
-                let obj = try decoder.decode(NearbyPlaces.self, from: data)
-                completion(.success(obj.results))
+                let obj = try decoder.decode(T.self, from: data)
+                completion(.success(obj))
             } catch {
-                completion(.failure(error))
+                completion(.failure(.invalidData))
             }
         }
         

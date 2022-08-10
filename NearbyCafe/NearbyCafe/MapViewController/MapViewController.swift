@@ -116,29 +116,46 @@ class MapViewController: UIViewController {
         let position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let marker = GMSMarker(position: position)
         marker.icon = GMSMarker.markerImage(with: .black)
-        marker.title = "Im Here"
+        marker.title = "I'm Here"
         marker.map = mapView
         
-        // Get places
+        // Get list of places for each type
         for type in typesOfPlaces {
-            networkService.getNearbyPlaces(
+            
+            networkService.fetch(NearbyPlacesResults.self, from: .getNearbyPlaces(
                 latitude: defaultLocation.coordinate.latitude,
                 longitude: defaultLocation.coordinate.longitude,
                 radius: searchRadius,
-                type: type) { [weak self] result in
+                type: type)) {  [weak self] result in
                     guard let self = self else { return }
                     
                     switch result {
                     case .success(let receivedPlaces):
                         
-                        if let receivedPlaces = receivedPlaces {
-                        
+                        if let receivedPlaces = receivedPlaces?.results {
+                            print(receivedPlaces.count)
+                            
                             // Place markers for places
                             DispatchQueue.main.async {
                                 for place in receivedPlaces {
                                     let position = CLLocationCoordinate2D(latitude: place.geometry.location.lat, longitude:  place.geometry.location.lng)
                                     let marker = GMSMarker(position: position)
+                                    
                                     marker.title = place.name
+                                    
+                                    // Get and set address for place
+                                    self.networkService.fetch(PlaceDetailsResult.self, from: .getPlaceDetails(placeID: place.place_id)) { result in
+                                        switch result {
+                                        case .success(let placeDetails):
+                                            if let placeDetails = placeDetails?.result {
+                                                marker.snippet = placeDetails.formatted_address
+                                            }
+                                        case .failure(let error):
+                                            print(error)
+                                        }
+                                    }
+                                    
+                                    // Place marker on map
                                     marker.map = self.mapView
                                 }
                             }
@@ -146,7 +163,8 @@ class MapViewController: UIViewController {
                     case .failure(let error):
                         print(error)
                     }
-                }
+                    
+            }
         }
     }
     
@@ -160,7 +178,7 @@ class MapViewController: UIViewController {
             placeMarkers(latitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude)
             let camera = GMSCameraPosition.camera(
                 withLatitude: defaultLocation.coordinate.latitude,
-                longitude: defaultLocation.coordinate.longitude,
+                longitude: defaultLocation .coordinate.longitude,
                 zoom: zoomLevel
             )
             mapView.animate(to: camera)
@@ -202,7 +220,7 @@ extension MapViewController: CLLocationManagerDelegate {
         if status == .denied || status == .notDetermined {
             showAlert()
         } else if !mapView.isHidden && (status == .authorizedWhenInUse || status == .authorizedAlways) {
-            // To automaticaly update already showed map with default coordinates on to map base with user coordinates.
+            // To automaticaly update already showed map with default coordinates on to map base on user coordinates.
             // Basically after user changed location access in settings and come back to app.
             mapNeedUpdation = true
         }

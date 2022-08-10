@@ -13,8 +13,10 @@
 		CE30DB5828A10746007F4DC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE30DB5628A10746007F4DC0 /* LaunchScreen.storyboard */; };
 		CE30DB6128A10A4D007F4DC0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30DB5F28A10A4D007F4DC0 /* MapViewController.swift */; };
 		CE30DB6228A10A4D007F4DC0 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE30DB6028A10A4D007F4DC0 /* MapViewController.xib */; };
+		CE3F868128A39BBE00F59D39 /* PlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F868028A39BBE00F59D39 /* PlaceDetails.swift */; };
+		CE3F868428A3A2E800F59D39 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F868328A3A2E800F59D39 /* ErrorMessage.swift */; };
 		CE5D7BF628A275A200F7CEE9 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D7BF528A275A200F7CEE9 /* NetworkService.swift */; };
-		CE5D7BF928A275D400F7CEE9 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D7BF828A275D400F7CEE9 /* Place.swift */; };
+		CE5D7BF928A275D400F7CEE9 /* NearbyPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D7BF828A275D400F7CEE9 /* NearbyPlaces.swift */; };
 		CE5D7BFB28A2775D00F7CEE9 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D7BFA28A2775D00F7CEE9 /* APIKeys.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,8 +30,10 @@
 		CE30DB5928A10746007F4DC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE30DB5F28A10A4D007F4DC0 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CE30DB6028A10A4D007F4DC0 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		CE3F868028A39BBE00F59D39 /* PlaceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetails.swift; sourceTree = "<group>"; };
+		CE3F868328A3A2E800F59D39 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		CE5D7BF528A275A200F7CEE9 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		CE5D7BF828A275D400F7CEE9 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		CE5D7BF828A275D400F7CEE9 /* NearbyPlaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPlaces.swift; sourceTree = "<group>"; };
 		CE5D7BFA28A2775D00F7CEE9 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		EBC5BC7213C4EA9B3643D911 /* Pods-NearbyCafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearbyCafe.debug.xcconfig"; path = "Target Support Files/Pods-NearbyCafe/Pods-NearbyCafe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +86,7 @@
 		CE30DB4A28A10743007F4DC0 /* NearbyCafe */ = {
 			isa = PBXGroup;
 			children = (
+				CE3F868228A3A2CB00F59D39 /* Utilities */,
 				CE5D7BF728A275C700F7CEE9 /* Model */,
 				CE5D7BF428A2758000F7CEE9 /* Service Layer */,
 				CE30DB6428A10BB0007F4DC0 /* Support Files */,
@@ -107,9 +112,17 @@
 				CE30DB5628A10746007F4DC0 /* LaunchScreen.storyboard */,
 				CE30DB4D28A10743007F4DC0 /* SceneDelegate.swift */,
 				CE30DB4B28A10743007F4DC0 /* AppDelegate.swift */,
-				CE5D7BFA28A2775D00F7CEE9 /* APIKeys.swift */,
 			);
 			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		CE3F868228A3A2CB00F59D39 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CE5D7BFA28A2775D00F7CEE9 /* APIKeys.swift */,
+				CE3F868328A3A2E800F59D39 /* ErrorMessage.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		CE5D7BF428A2758000F7CEE9 /* Service Layer */ = {
@@ -123,7 +136,8 @@
 		CE5D7BF728A275C700F7CEE9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CE5D7BF828A275D400F7CEE9 /* Place.swift */,
+				CE5D7BF828A275D400F7CEE9 /* NearbyPlaces.swift */,
+				CE3F868028A39BBE00F59D39 /* PlaceDetails.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -246,9 +260,11 @@
 				CE5D7BFB28A2775D00F7CEE9 /* APIKeys.swift in Sources */,
 				CE30DB4C28A10743007F4DC0 /* AppDelegate.swift in Sources */,
 				CE30DB6128A10A4D007F4DC0 /* MapViewController.swift in Sources */,
+				CE3F868128A39BBE00F59D39 /* PlaceDetails.swift in Sources */,
+				CE3F868428A3A2E800F59D39 /* ErrorMessage.swift in Sources */,
 				CE5D7BF628A275A200F7CEE9 /* NetworkService.swift in Sources */,
 				CE30DB4E28A10743007F4DC0 /* SceneDelegate.swift in Sources */,
-				CE5D7BF928A275D400F7CEE9 /* Place.swift in Sources */,
+				CE5D7BF928A275D400F7CEE9 /* NearbyPlaces.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
