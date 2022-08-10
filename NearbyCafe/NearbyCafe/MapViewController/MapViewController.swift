@@ -60,13 +60,24 @@ class MapViewController: UIViewController {
             longitude: defaultLocation.coordinate.longitude,
             zoom: zoomLevel
         )
+        
+        // create map view
         mapView = GMSMapView.map(withFrame: view.frame, camera: camera)
+        
+        // Place map on screen
         view.addSubview(mapView)
-        mapView.addSubview(centerButton)
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            mapView.topAnchor.constraint(equalTo: view.topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
         
         // Place center button on map
-        centerButton.trailingAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.trailingAnchor, constant: -50).isActive = true
-        centerButton.bottomAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.bottomAnchor, constant: -50).isActive = true
+        mapView.addSubview(centerButton)
+        centerButton.trailingAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+        centerButton.bottomAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
         
         mapView.isHidden = true
     }
@@ -128,42 +139,42 @@ class MapViewController: UIViewController {
                 radius: searchRadius,
                 type: type)) {  [weak self] result in
                     guard let self = self else { return }
-                    
-                    switch result {
-                    case .success(let receivedPlaces):
-                        
-                        if let receivedPlaces = receivedPlaces?.results {
-                            print(receivedPlaces.count)
+                        switch result {
+                        case .success(let receivedPlaces):
                             
-                            // Place markers for places
-                            DispatchQueue.main.async {
-                                for place in receivedPlaces {
-                                    let position = CLLocationCoordinate2D(latitude: place.geometry.location.lat, longitude:  place.geometry.location.lng)
-                                    let marker = GMSMarker(position: position)
-                                    
-                                    marker.title = place.name
-                                    
-                                    // Get and set address for place
-                                    self.networkService.fetch(PlaceDetailsResult.self, from: .getPlaceDetails(placeID: place.place_id)) { result in
-                                        switch result {
-                                        case .success(let placeDetails):
-                                            if let placeDetails = placeDetails?.result {
-                                                marker.snippet = placeDetails.formatted_address
+                            if let receivedPlaces = receivedPlaces?.results {
+                                
+                                // Place markers for places
+                                    for place in receivedPlaces {
+                                        DispatchQueue.main.async {
+                                            let position = CLLocationCoordinate2D(latitude: place.geometry.location.lat, longitude:  place.geometry.location.lng)
+                                            let marker = GMSMarker(position: position)
+                                            
+                                            marker.title = place.name
+                                            
+                                            // Get and set address for place
+                                            self.networkService.fetch(PlaceDetailsResult.self, from: .getPlaceDetails(placeID: place.place_id)) { result in
+                                                switch result {
+                                                case .success(let placeDetails):
+                                                    if let placeDetails = placeDetails?.result {
+                                                        DispatchQueue.main.async {
+                                                            marker.snippet = placeDetails.formatted_address
+                                                        }
+                                                    }
+                                                case .failure(let error):
+                                                    print(error)
+                                                }
                                             }
-                                        case .failure(let error):
-                                            print(error)
+                                            
+                                            // Place marker on map
+                                            marker.map = self.mapView
+                                        
                                         }
                                     }
-                                    
-                                    // Place marker on map
-                                    marker.map = self.mapView
-                                }
                             }
+                        case .failure(let error):
+                            print(error)
                         }
-                    case .failure(let error):
-                        print(error)
-                    }
-                    
             }
         }
     }
