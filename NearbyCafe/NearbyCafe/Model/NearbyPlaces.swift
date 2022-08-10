@@ -14,7 +14,10 @@ struct NearbyPlacesResults: Codable {
 struct Place: Codable {
     let place_id: String
     let name: String
+    let rating: Double
+    let icon: String
     let geometry: Geometry
+    var address: String?
 }
 
 // MARK: - Geometry

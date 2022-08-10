@@ -23,6 +23,8 @@ class MapViewController: UIViewController {
     private let zoomLevel: Float = 12
     private var defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
     
+    private var places = [Place]()
+    
     private lazy var centerButton: UIButton = {
         let button = UIButton()
         let buttonSize: CGFloat = 60
@@ -43,6 +45,30 @@ class MapViewController: UIViewController {
         
         // Specify action for button
         button.addTarget(self, action: #selector(centerButtonTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    private lazy var listButton: UIButton = {
+        let button = UIButton()
+        let buttonSize: CGFloat = 60
+        button.backgroundColor = .white
+        button.layer.cornerRadius = buttonSize / 2
+        button.setImage(UIImage(systemName: "list.dash"), for: .normal)
+        
+        // Add shadow
+        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        button.layer.shadowOpacity = 1.0
+        button.layer.masksToBounds = false
+        
+        // Specify button sizes
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.heightAnchor.constraint(equalToConstant: buttonSize).isActive = true
+        button.widthAnchor.constraint(equalToConstant: buttonSize).isActive = true
+        
+        // Specify action for button
+        button.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
         
         return button
     }()
@@ -79,6 +105,11 @@ class MapViewController: UIViewController {
         centerButton.trailingAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
         centerButton.bottomAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
         
+        // Place list button on map
+        mapView.addSubview(listButton)
+        listButton.trailingAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+        listButton.bottomAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.bottomAnchor, constant: -90).isActive = true
+        
         mapView.isHidden = true
     }
     
@@ -98,6 +129,7 @@ class MapViewController: UIViewController {
         // Without this check user with restricted status will not see anything.
         } else if status == .restricted {
             centerButton.isHidden = true
+            listButton.isHidden = true
             mapView.isHidden = false
         }
     }
@@ -122,6 +154,7 @@ class MapViewController: UIViewController {
     
     private func placeMarkers(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         mapView.clear()
+        places.removeAll()
         
         // Place user position marker
         let position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -144,7 +177,9 @@ class MapViewController: UIViewController {
                             
                             if let receivedPlaces = receivedPlaces?.results {
                                 
-                                // Place markers for places
+                                self.places.append(contentsOf: receivedPlaces)
+                                
+                                   // Place markers for places
                                     for place in receivedPlaces {
                                         DispatchQueue.main.async {
                                             let position = CLLocationCoordinate2D(latitude: place.geometry.location.lat, longitude:  place.geometry.location.lng)
@@ -158,6 +193,11 @@ class MapViewController: UIViewController {
                                                 case .success(let placeDetails):
                                                     if let placeDetails = placeDetails?.result {
                                                         DispatchQueue.main.async {
+                                                            // Add address to place object
+                                                            if let index = self.places.firstIndex(where: { $0.place_id == place.place_id }) {
+                                                                self.places[index].address = placeDetails.formatted_address
+                                                            }
+                                                            // Add address to anotation
                                                             marker.snippet = placeDetails.formatted_address
                                                         }
                                                     }
@@ -194,6 +234,12 @@ class MapViewController: UIViewController {
             )
             mapView.animate(to: camera)
         }
+    }
+    
+    @objc private func listButtonTapped() {
+        let listVC = ListViewController()
+        listVC.places = places
+        self.navigationController?.pushViewController(listVC, animated: true)
     }
 }
 
