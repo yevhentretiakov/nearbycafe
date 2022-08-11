@@ -1,6 +1,0 @@
-framework module Pods_NearbyCafe {
-  umbrella header "Pods-NearbyCafe-umbrella.h"
-
-  export *
-  module * { export * }
-}
