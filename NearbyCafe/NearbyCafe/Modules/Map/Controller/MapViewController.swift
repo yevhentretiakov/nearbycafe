@@ -141,7 +141,7 @@ final class MapViewController: UIViewController {
                                     // Place markers for places
                                     for place in receivedPlaces {
                                         DispatchQueue.main.async {
-                                            let position = CLLocationCoordinate2D(latitude: place.geometry.location.lat, longitude:  place.geometry.location.lng)
+                                            let position = CLLocationCoordinate2D(latitude: place.geometry.location.latitude, longitude:  place.geometry.location.longitude)
                                             let marker = GMSMarker(position: position)
                                             
                                             marker.title = place.name

@@ -22,5 +22,10 @@ struct Geometry: Codable {
 }
 
 struct Location: Codable {
-    let lat, lng: Double
+    let latitude, longitude: Double
+    
+    enum CodingKeys: String, CodingKey {
+        case latitude = "lat"
+        case longitude = "lng"
+    }
 }
