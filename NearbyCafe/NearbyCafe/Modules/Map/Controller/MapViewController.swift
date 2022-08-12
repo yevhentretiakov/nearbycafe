@@ -10,7 +10,7 @@ import CoreLocation
 import GoogleMaps
 import GooglePlaces
 
-class MapViewController: UIViewController {
+final class MapViewController: UIViewController {
     
     private var locationManager = CLLocationManager()
     private var networkService = NetworkService()
@@ -144,7 +144,7 @@ class MapViewController: UIViewController {
                             
                             if let receivedPlaces = receivedPlaces?.results {
                                 
-                                // Place markers for places
+                                    // Place markers for places
                                     for place in receivedPlaces {
                                         DispatchQueue.main.async {
                                             let position = CLLocationCoordinate2D(latitude: place.geometry.location.lat, longitude:  place.geometry.location.lng)

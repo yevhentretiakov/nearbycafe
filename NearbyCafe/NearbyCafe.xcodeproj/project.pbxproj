@@ -21,7 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		73B55A23FA31396531323E39 /* Pods-NearbyCafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearbyCafe.release.xcconfig"; path = "Target Support Files/Pods-NearbyCafe/Pods-NearbyCafe.release.xcconfig"; sourceTree = "<group>"; };
+		6367C7993C93751E5F3B5890 /* Pods-NearbyCafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearbyCafe.release.xcconfig"; path = "Target Support Files/Pods-NearbyCafe/Pods-NearbyCafe.release.xcconfig"; sourceTree = "<group>"; };
+		CD25C114E374F8913CFE7737 /* Pods-NearbyCafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearbyCafe.debug.xcconfig"; path = "Target Support Files/Pods-NearbyCafe/Pods-NearbyCafe.debug.xcconfig"; sourceTree = "<group>"; };
 		CE30DB4828A10743007F4DC0 /* NearbyCafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearbyCafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE30DB4B28A10743007F4DC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE30DB4D28A10743007F4DC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,7 +36,6 @@
 		CE5D7BF528A275A200F7CEE9 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		CE5D7BF828A275D400F7CEE9 /* NearbyPlaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPlaces.swift; sourceTree = "<group>"; };
 		CE5D7BFA28A2775D00F7CEE9 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
-		EBC5BC7213C4EA9B3643D911 /* Pods-NearbyCafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearbyCafe.debug.xcconfig"; path = "Target Support Files/Pods-NearbyCafe/Pods-NearbyCafe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +49,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		91F2C1CFB2D9DC3233A57335 /* Frameworks */ = {
+		41657948D595E90A14870FE9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -59,8 +59,8 @@
 		9B44A8DA4B5B7CEAEE3BB05C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EBC5BC7213C4EA9B3643D911 /* Pods-NearbyCafe.debug.xcconfig */,
-				73B55A23FA31396531323E39 /* Pods-NearbyCafe.release.xcconfig */,
+				CD25C114E374F8913CFE7737 /* Pods-NearbyCafe.debug.xcconfig */,
+				6367C7993C93751E5F3B5890 /* Pods-NearbyCafe.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -71,7 +71,7 @@
 				CE30DB4A28A10743007F4DC0 /* NearbyCafe */,
 				CE30DB4928A10743007F4DC0 /* Products */,
 				9B44A8DA4B5B7CEAEE3BB05C /* Pods */,
-				91F2C1CFB2D9DC3233A57335 /* Frameworks */,
+				41657948D595E90A14870FE9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,23 +86,14 @@
 		CE30DB4A28A10743007F4DC0 /* NearbyCafe */ = {
 			isa = PBXGroup;
 			children = (
+				CE7F4C5E28A634EC001EA9C6 /* Application */,
+				CE7F4C5F28A6351E001EA9C6 /* Modules */,
+				CE7F4C6628A63811001EA9C6 /* Managers */,
 				CE3F868228A3A2CB00F59D39 /* Utilities */,
-				CE5D7BF728A275C700F7CEE9 /* Model */,
-				CE5D7BF428A2758000F7CEE9 /* Service Layer */,
 				CE30DB6428A10BB0007F4DC0 /* Support Files */,
-				CE30DB6328A10A5D007F4DC0 /* MapViewController */,
 				CE30DB5928A10746007F4DC0 /* Info.plist */,
 			);
 			path = NearbyCafe;
-			sourceTree = "<group>";
-		};
-		CE30DB6328A10A5D007F4DC0 /* MapViewController */ = {
-			isa = PBXGroup;
-			children = (
-				CE30DB5F28A10A4D007F4DC0 /* MapViewController.swift */,
-				CE30DB6028A10A4D007F4DC0 /* MapViewController.xib */,
-			);
-			path = MapViewController;
 			sourceTree = "<group>";
 		};
 		CE30DB6428A10BB0007F4DC0 /* Support Files */ = {
@@ -110,8 +101,6 @@
 			children = (
 				CE30DB5428A10746007F4DC0 /* Assets.xcassets */,
 				CE30DB5628A10746007F4DC0 /* LaunchScreen.storyboard */,
-				CE30DB4D28A10743007F4DC0 /* SceneDelegate.swift */,
-				CE30DB4B28A10743007F4DC0 /* AppDelegate.swift */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -125,21 +114,96 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		CE5D7BF428A2758000F7CEE9 /* Service Layer */ = {
+		CE5D7BF428A2758000F7CEE9 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
 				CE5D7BF528A275A200F7CEE9 /* NetworkService.swift */,
 			);
-			path = "Service Layer";
+			path = NetworkManager;
 			sourceTree = "<group>";
 		};
-		CE5D7BF728A275C700F7CEE9 /* Model */ = {
+		CE7F4C5E28A634EC001EA9C6 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				CE30DB4D28A10743007F4DC0 /* SceneDelegate.swift */,
+				CE30DB4B28A10743007F4DC0 /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		CE7F4C5F28A6351E001EA9C6 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F4C6028A63530001EA9C6 /* Map */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		CE7F4C6028A63530001EA9C6 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F4C6528A63615001EA9C6 /* CustomUI */,
+				CE7F4C6328A63587001EA9C6 /* Model */,
+				CE7F4C6228A63543001EA9C6 /* Controller */,
+				CE7F4C6128A63538001EA9C6 /* View */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		CE7F4C6128A63538001EA9C6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE30DB6028A10A4D007F4DC0 /* MapViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE7F4C6228A63543001EA9C6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CE30DB5F28A10A4D007F4DC0 /* MapViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CE7F4C6328A63587001EA9C6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				CE5D7BF828A275D400F7CEE9 /* NearbyPlaces.swift */,
 				CE3F868028A39BBE00F59D39 /* PlaceDetails.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CE7F4C6528A63615001EA9C6 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		CE7F4C6628A63811001EA9C6 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F4C6828A63877001EA9C6 /* LocationManager */,
+				CE7F4C6728A63836001EA9C6 /* GoogleServicesManager */,
+				CE5D7BF428A2758000F7CEE9 /* NetworkManager */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		CE7F4C6728A63836001EA9C6 /* GoogleServicesManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GoogleServicesManager;
+			sourceTree = "<group>";
+		};
+		CE7F4C6828A63877001EA9C6 /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LocationManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,11 +213,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE30DB5C28A10746007F4DC0 /* Build configuration list for PBXNativeTarget "NearbyCafe" */;
 			buildPhases = (
-				A4B5A70660260ED04DCCAB75 /* [CP] Check Pods Manifest.lock */,
+				230C1F691036261C00F350C9 /* [CP] Check Pods Manifest.lock */,
 				CE30DB4428A10743007F4DC0 /* Sources */,
 				CE30DB4528A10743007F4DC0 /* Frameworks */,
 				CE30DB4628A10743007F4DC0 /* Resources */,
-				CF9EA44610F9452EFB102596 /* [CP] Copy Pods Resources */,
+				F8A69391954F8F13C838E4DB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -211,7 +275,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A4B5A70660260ED04DCCAB75 /* [CP] Check Pods Manifest.lock */ = {
+		230C1F691036261C00F350C9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -233,7 +297,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CF9EA44610F9452EFB102596 /* [CP] Copy Pods Resources */ = {
+		F8A69391954F8F13C838E4DB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -398,7 +462,7 @@
 		};
 		CE30DB5D28A10746007F4DC0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EBC5BC7213C4EA9B3643D911 /* Pods-NearbyCafe.debug.xcconfig */;
+			baseConfigurationReference = CD25C114E374F8913CFE7737 /* Pods-NearbyCafe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -426,7 +490,7 @@
 		};
 		CE30DB5E28A10746007F4DC0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73B55A23FA31396531323E39 /* Pods-NearbyCafe.release.xcconfig */;
+			baseConfigurationReference = 6367C7993C93751E5F3B5890 /* Pods-NearbyCafe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
