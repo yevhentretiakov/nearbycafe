@@ -19,6 +19,7 @@
 		CE5D7BF928A275D400F7CEE9 /* NearbyPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D7BF828A275D400F7CEE9 /* NearbyPlaces.swift */; };
 		CE7F4C6A28A645CD001EA9C6 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C6928A645CD001EA9C6 /* APIKeys.swift */; };
 		CE7F4C6D28A651CE001EA9C6 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C6C28A651CE001EA9C6 /* UIViewController+Extensions.swift */; };
+		CE7F4C6F28A6574E001EA9C6 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C6E28A6574E001EA9C6 /* UIApplication+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		CE5D7BF828A275D400F7CEE9 /* NearbyPlaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPlaces.swift; sourceTree = "<group>"; };
 		CE7F4C6928A645CD001EA9C6 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		CE7F4C6C28A651CE001EA9C6 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		CE7F4C6E28A6574E001EA9C6 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				CE7F4C6C28A651CE001EA9C6 /* UIViewController+Extensions.swift */,
+				CE7F4C6E28A6574E001EA9C6 /* UIApplication+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE7F4C6F28A6574E001EA9C6 /* UIApplication+Extensions.swift in Sources */,
 				CE30DB4C28A10743007F4DC0 /* AppDelegate.swift in Sources */,
 				CE30DB6128A10A4D007F4DC0 /* MapViewController.swift in Sources */,
 				CE7F4C6D28A651CE001EA9C6 /* UIViewController+Extensions.swift in Sources */,

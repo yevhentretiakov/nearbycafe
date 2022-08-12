@@ -53,12 +53,9 @@ final class MapViewController: UIViewController {
     }
     
     private lazy var settingsAction = UIAlertAction(title: "Settings", style: UIAlertAction.Style.default) {_ in
-        // Open app settings
-        if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
-           UIApplication.shared.open(settingsUrl)
-         }
+        UIApplication.openAppSettings()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
