@@ -8,7 +8,7 @@
 import UIKit
 
 enum ApiEndpoint {
-    case getNearbyPlaces(latitude: Double, longitude: Double, radius: Int, type: String)
+    case getNearbyPlaces(latitude: Double, longitude: Double, type: String)
     case getPlaceDetails(placeID: String)
 }
 
@@ -19,9 +19,9 @@ protocol HTTPRequest {
 extension ApiEndpoint: HTTPRequest {
     var url: String {
         switch self {
-        case .getNearbyPlaces(let latitude, let longitude, let radius, let type):
+        case .getNearbyPlaces(let latitude, let longitude, let type):
             let baseURL = "https://maps.googleapis.com/maps/api/place"
-            let path = "/nearbysearch/json?location=\(latitude),\(longitude)&radius=\(radius)&type=\(type)&key=\(APIKeys.gmap)"
+            let path = "/nearbysearch/json?location=\(latitude),\(longitude)&radius=5000&type=\(type)&key=\(APIKeys.gmap)"
             return baseURL + path
         case .getPlaceDetails(let placeID):
             let baseURL = "https://maps.googleapis.com/maps/api/place"
@@ -33,7 +33,7 @@ extension ApiEndpoint: HTTPRequest {
 
 class NetworkService {
     
-    func fetch<T: Decodable>(_ returnType: T.Type, from endpoint: ApiEndpoint, completion: @escaping (Result<T?, ErrorMessage>) -> Void) {
+    func fetch<T: Decodable>(_ returnType: T.Type, from endpoint: ApiEndpoint, completion: @escaping (Result<T?, NetworkError>) -> Void) {
         
         guard let url = URL(string: endpoint.url) else {
             completion(.failure(.badURL))

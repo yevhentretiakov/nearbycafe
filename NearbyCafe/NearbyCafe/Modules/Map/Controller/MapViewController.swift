@@ -19,7 +19,6 @@ final class MapViewController: UIViewController {
     private var mapNeedUpdation = false
     
     private var typesOfPlaces = ["cafe", "restaurant"]
-    private let searchRadius = 5000
     private let zoomLevel: Float = 12
     private var defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
     
@@ -46,7 +45,7 @@ final class MapViewController: UIViewController {
         
         return button
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -136,7 +135,6 @@ final class MapViewController: UIViewController {
             networkService.fetch(NearbyPlacesResults.self, from: .getNearbyPlaces(
                 latitude: defaultLocation.coordinate.latitude,
                 longitude: defaultLocation.coordinate.longitude,
-                radius: searchRadius,
                 type: type)) {  [weak self] result in
                     guard let self = self else { return }
                         switch result {

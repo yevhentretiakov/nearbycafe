@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ErrorMessage: String, Error {
+enum NetworkError: String, Error {
     case badURL = "Bad url."
     case unableToComplete = "Unable to complete."
     case invalidResponse = "Invalid response."
