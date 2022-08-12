@@ -31,7 +31,7 @@ extension ApiEndpoint: HTTPRequest {
     }
 }
 
-class NetworkService {
+class NetworkManager {
     
     func fetch<T: Decodable>(_ returnType: T.Type, from endpoint: ApiEndpoint, completion: @escaping (Result<T?, NetworkError>) -> Void) {
         

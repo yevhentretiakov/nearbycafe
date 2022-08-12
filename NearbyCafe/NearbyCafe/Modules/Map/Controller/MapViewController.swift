@@ -13,7 +13,7 @@ import GooglePlaces
 final class MapViewController: UIViewController {
     
     private var locationManager = CLLocationManager()
-    private var networkService = NetworkService()
+    private var networkService = NetworkManager()
     
     private var mapView: GMSMapView!
     private var mapNeedUpdation = false
