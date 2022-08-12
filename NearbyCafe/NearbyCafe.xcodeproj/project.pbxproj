@@ -18,6 +18,7 @@
 		CE5D7BF628A275A200F7CEE9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D7BF528A275A200F7CEE9 /* NetworkManager.swift */; };
 		CE5D7BF928A275D400F7CEE9 /* NearbyPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D7BF828A275D400F7CEE9 /* NearbyPlaces.swift */; };
 		CE7F4C6A28A645CD001EA9C6 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C6928A645CD001EA9C6 /* APIKeys.swift */; };
+		CE7F4C6D28A651CE001EA9C6 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C6C28A651CE001EA9C6 /* UIViewController+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		CE5D7BF528A275A200F7CEE9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CE5D7BF828A275D400F7CEE9 /* NearbyPlaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyPlaces.swift; sourceTree = "<group>"; };
 		CE7F4C6928A645CD001EA9C6 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
+		CE7F4C6C28A651CE001EA9C6 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				CE7F4C5E28A634EC001EA9C6 /* Application */,
 				CE7F4C5F28A6351E001EA9C6 /* Modules */,
 				CE7F4C6628A63811001EA9C6 /* Managers */,
+				CE7F4C6B28A64F78001EA9C6 /* Extensions */,
 				CE3F868228A3A2CB00F59D39 /* Utilities */,
 				CE30DB6428A10BB0007F4DC0 /* Support Files */,
 				CE30DB5928A10746007F4DC0 /* Info.plist */,
@@ -204,6 +207,14 @@
 			children = (
 			);
 			path = LocationManager;
+			sourceTree = "<group>";
+		};
+		CE7F4C6B28A64F78001EA9C6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F4C6C28A651CE001EA9C6 /* UIViewController+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,6 +334,7 @@
 			files = (
 				CE30DB4C28A10743007F4DC0 /* AppDelegate.swift in Sources */,
 				CE30DB6128A10A4D007F4DC0 /* MapViewController.swift in Sources */,
+				CE7F4C6D28A651CE001EA9C6 /* UIViewController+Extensions.swift in Sources */,
 				CE3F868128A39BBE00F59D39 /* PlaceDetails.swift in Sources */,
 				CE3F868428A3A2E800F59D39 /* NetworkError.swift in Sources */,
 				CE5D7BF628A275A200F7CEE9 /* NetworkManager.swift in Sources */,

@@ -45,6 +45,19 @@ final class MapViewController: UIViewController {
         
         return button
     }()
+    
+    private lazy var laterAction = UIAlertAction(title: "Later", style: UIAlertAction.Style.destructive) {_ in
+        if self.mapView.isHidden {
+            self.mapView.isHidden = false
+        }
+    }
+    
+    private lazy var settingsAction = UIAlertAction(title: "Settings", style: UIAlertAction.Style.default) {_ in
+        // Open app settings
+        if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+           UIApplication.shared.open(settingsUrl)
+         }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,7 +104,7 @@ final class MapViewController: UIViewController {
         
         // Check if user denied acces
         if status == .denied {
-            showAlert()
+            showMapAlert()
         // Check if user have restricted access it mean he cant change location status in settings.
         // So just show map with default coordinates for him and hide center button.
         // Without this check user with restricted status will not see anything.
@@ -101,22 +114,8 @@ final class MapViewController: UIViewController {
         }
     }
     
-    private func showAlert() {
-        let alert = UIAlertController(title: "Can't get your location", message: "Share your location to fully use the app.", preferredStyle: UIAlertController.Style.alert)
-        
-        alert.addAction(UIAlertAction(title: "Later", style: UIAlertAction.Style.destructive) {_ in
-            if self.mapView.isHidden {
-                self.mapView.isHidden = false
-            }
-        })
-        alert.addAction(UIAlertAction(title: "Settings", style: UIAlertAction.Style.default) {_ in
-            // Open app settings
-            if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
-               UIApplication.shared.open(settingsUrl)
-             }
-        })
-        
-        self.present(alert, animated: true, completion: nil)
+    private func showMapAlert() {
+        showAlert(title: "Can't get your location", message: "Share your location to fully use the app.", actions: [laterAction,settingsAction])
     }
     
     private func placeMarkers(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
@@ -178,11 +177,10 @@ final class MapViewController: UIViewController {
     }
     
     @objc private func centerButtonTapped() {
-        
         // Check if app have access to user location
         let status = locationManager.authorizationStatus
         if status == .denied || status == .notDetermined {
-            showAlert()
+            showMapAlert()
         } else {
             placeMarkers(latitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude)
             let camera = GMSCameraPosition.camera(
@@ -227,7 +225,7 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .denied || status == .notDetermined {
-            showAlert()
+            showMapAlert()
         } else if !mapView.isHidden && (status == .authorizedWhenInUse || status == .authorizedAlways) {
             // To automaticaly update already showed map with default coordinates on to map base on user coordinates.
             // Basically after user changed location access in settings and come back to app.
