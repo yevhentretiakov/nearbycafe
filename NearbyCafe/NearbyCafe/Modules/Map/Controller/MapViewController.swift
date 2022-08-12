@@ -128,7 +128,7 @@ final class MapViewController: UIViewController {
         // Get list of places for each type
         for type in typesOfPlaces {
             
-            networkService.fetch(NearbyPlacesResults.self, from: .getNearbyPlaces(
+            networkService.fetch(PlaceListResponse.self, from: .getNearbyPlaces(
                 latitude: defaultLocation.coordinate.latitude,
                 longitude: defaultLocation.coordinate.longitude,
                 type: type)) {  [weak self] result in

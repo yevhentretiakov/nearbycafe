@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NearbyPlacesResults: Codable {
+struct PlaceListResponse: Codable {
     let results: [Place]
 }
 
@@ -17,12 +17,10 @@ struct Place: Codable {
     let geometry: Geometry
 }
 
-// MARK: - Geometry
 struct Geometry: Codable {
     let location: Location
 }
 
-// MARK: - Location
 struct Location: Codable {
     let lat, lng: Double
 }
