@@ -43,10 +43,14 @@ class NetworkManager: NetworkManagerProtocol {
             completion(.failure(.badURL))
             return
         }
-        
+
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if error != nil {
-                completion(.failure(.unableToComplete))
+                if let error = error as? NetworkError {
+                    completion(.failure(error))
+                } else {
+                    completion(.failure(.unableToComplete))
+                }
                 return
             }
             

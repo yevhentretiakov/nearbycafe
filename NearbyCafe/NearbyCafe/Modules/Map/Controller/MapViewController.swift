@@ -147,7 +147,7 @@ final class MapViewController: UIViewController {
                                             marker.title = place.name
                                             
                                             // Get and set address for place
-                                            self.networkService.fetch(PlaceDetailResponse.self, from: .getPlaceDetails(placeID: place.place_id)) { result in
+                                            self.networkService.fetch(PlaceDetailsResponse.self, from: .getPlaceDetails(placeID: place.place_id)) { result in
                                                 switch result {
                                                 case .success(let placeDetails):
                                                     if let placeDetails = placeDetails?.result {
