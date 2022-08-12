@@ -23,17 +23,16 @@ final class MapViewController: UIViewController {
     private var defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
     
     private lazy var centerButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
         let buttonSize: CGFloat = 60
         button.backgroundColor = .white
-        button.layer.cornerRadius = buttonSize / 2
         button.setImage(UIImage(systemName: "location.north.fill"), for: .normal)
         
-        // Add shadow
-        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        button.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-        button.layer.shadowOpacity = 1.0
-        button.layer.masksToBounds = false
+        button.addCornerRadius(buttonSize / 2)
+        button.addShadow(color: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25),
+                         offset: CGSize(width: 0.0, height: 2.0),
+                         opacity: 1.0,
+                         radius: 2)
         
         // Specify button sizes
         button.translatesAutoresizingMaskIntoConstraints = false

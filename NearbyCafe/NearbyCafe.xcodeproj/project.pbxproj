@@ -20,6 +20,7 @@
 		CE7F4C6A28A645CD001EA9C6 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C6928A645CD001EA9C6 /* APIKeys.swift */; };
 		CE7F4C6D28A651CE001EA9C6 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C6C28A651CE001EA9C6 /* UIViewController+Extensions.swift */; };
 		CE7F4C6F28A6574E001EA9C6 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C6E28A6574E001EA9C6 /* UIApplication+Extensions.swift */; };
+		CE7F4C7128A676AB001EA9C6 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C7028A676AB001EA9C6 /* UIView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		CE7F4C6928A645CD001EA9C6 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		CE7F4C6C28A651CE001EA9C6 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		CE7F4C6E28A6574E001EA9C6 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
+		CE7F4C7028A676AB001EA9C6 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +218,7 @@
 			children = (
 				CE7F4C6C28A651CE001EA9C6 /* UIViewController+Extensions.swift */,
 				CE7F4C6E28A6574E001EA9C6 /* UIApplication+Extensions.swift */,
+				CE7F4C7028A676AB001EA9C6 /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				CE30DB4E28A10743007F4DC0 /* SceneDelegate.swift in Sources */,
 				CE7F4C6A28A645CD001EA9C6 /* APIKeys.swift in Sources */,
 				CE5D7BF928A275D400F7CEE9 /* PlaceListResponse.swift in Sources */,
+				CE7F4C7128A676AB001EA9C6 /* UIView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
