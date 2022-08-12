@@ -56,7 +56,7 @@ class NetworkManager: NetworkManagerProtocol {
             }
             
             guard let data = data else {
-                completion(.failure(.invalidData))
+                completion(.failure(.emptyData))
                 return
             }
             
