@@ -49,11 +49,11 @@ final class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        createMap()
+        setupMap()
         startLocationManager()
     }
     
-    private func createMap() {
+    private func setupMap() {
         let camera = GMSCameraPosition.camera(
             withLatitude: defaultLocation.coordinate.latitude,
             longitude: defaultLocation.coordinate.longitude,
