@@ -59,6 +59,7 @@ final class MapViewController: UIViewController {
         setMapCamera(latitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude)
         
         mapView.isHidden = true
+        mapView.isMyLocationEnabled = true
         
         layoutMap()
         layoutCenterButton()
@@ -115,16 +116,8 @@ final class MapViewController: UIViewController {
     private func placeMarkers(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         mapView.clear()
         
-        // Place user position marker
-        let position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        let marker = GMSMarker(position: position)
-        marker.icon = GMSMarker.markerImage(with: .black)
-        marker.title = "I'm Here"
-        marker.map = mapView
-        
         // Get list of places for each type
         for type in typesOfPlaces {
-            
             networkService.fetch(PlaceListResponse.self, from: .getNearbyPlaces(
                 latitude: defaultLocation.coordinate.latitude,
                 longitude: defaultLocation.coordinate.longitude,
@@ -132,34 +125,32 @@ final class MapViewController: UIViewController {
                     guard let self = self else { return }
                         switch result {
                         case .success(let receivedPlaces):
-                            
                             if let receivedPlaces = receivedPlaces?.results {
-                                
                                     // Place markers for places
                                     for place in receivedPlaces {
                                         DispatchQueue.main.async {
-                                            let position = CLLocationCoordinate2D(latitude: place.geometry.location.latitude, longitude:  place.geometry.location.longitude)
-                                            let marker = GMSMarker(position: position)
-                                            
-                                            marker.title = place.name
-                                            
                                             // Get and set address for place
                                             self.networkService.fetch(PlaceDetailsResponse.self, from: .getPlaceDetails(placeID: place.place_id)) { result in
                                                 switch result {
                                                 case .success(let placeDetails):
                                                     if let placeDetails = placeDetails?.result {
                                                         DispatchQueue.main.async {
-                                                            marker.snippet = placeDetails.address
+                                                            self.setMarker(latitude: place.geometry.location.latitude,
+                                                                           longitude: place.geometry.location.longitude,
+                                                                           title: place.name,
+                                                                           snippet: placeDetails.address)
+                                                        }
+                                                    } else {
+                                                        DispatchQueue.main.async {
+                                                            self.setMarker(latitude: place.geometry.location.latitude,
+                                                                           longitude: place.geometry.location.longitude,
+                                                                           title: place.name)
                                                         }
                                                     }
                                                 case .failure(let error):
                                                     print(error)
                                                 }
                                             }
-                                            
-                                            // Place marker on map
-                                            marker.map = self.mapView
-                                        
                                         }
                                     }
                             }
@@ -177,6 +168,18 @@ final class MapViewController: UIViewController {
             zoom: zoomLevel
         )
         mapView.camera = camera
+    }
+    
+    private func setMarker(latitude: Double, longitude: Double, title: String? = nil, snippet: String? = nil) {
+        let position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let marker = GMSMarker(position: position)
+        if let title = title {
+            marker.title = title
+        }
+        if let snippet = snippet {
+            marker.snippet = snippet
+        }
+        marker.map = mapView
     }
    
     @objc private func centerButtonTapped() {
