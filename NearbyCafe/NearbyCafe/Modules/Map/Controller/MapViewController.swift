@@ -11,15 +11,15 @@ import GooglePlaces
 
 final class MapViewController: UIViewController {
     
-    private var locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     private let networkService = NetworkManager()
     
     private var mapView: GMSMapView!
     private var mapNeedUpdation = false
     
-    private var typesOfPlaces = ["cafe", "restaurant"]
+    private let typesOfPlaces = ["cafe", "restaurant"]
     private let zoomLevel: Float = 12
-    private var defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
+    private let defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
     
     private lazy var centerButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
@@ -116,11 +116,13 @@ final class MapViewController: UIViewController {
     private func placeMarkers(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         mapView.clear()
         
+        guard let location = mapView.myLocation else { return }
+        
         // Get list of places for each type
         for type in typesOfPlaces {
             networkService.fetch(PlaceListResponse.self, from: .getNearbyPlaces(
-                latitude: defaultLocation.coordinate.latitude,
-                longitude: defaultLocation.coordinate.longitude,
+                latitude: location.coordinate.latitude,
+                longitude: location.coordinate.longitude,
                 type: type)) {  [weak self] result in
                     guard let self = self else { return }
                         switch result {
@@ -188,8 +190,10 @@ final class MapViewController: UIViewController {
         if status == .denied || status == .notDetermined {
             showMapAlert()
         } else {
-            placeMarkers(latitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude)
-            setMapCamera(latitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude)
+            if let location = mapView.myLocation {
+                placeMarkers(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                setMapCamera(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            }
         }
     }
 }
@@ -197,21 +201,16 @@ final class MapViewController: UIViewController {
 extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else { return }
-        
-        // Change default location
-        defaultLocation = CLLocation(
-            latitude: location.coordinate.latitude,
-            longitude: location.coordinate.longitude
-        )
-        
         if mapView.isHidden || mapNeedUpdation {
-            setMapCamera(latitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude)
             
-            placeMarkers(
-                latitude: defaultLocation.coordinate.latitude,
-                longitude: defaultLocation.coordinate.longitude
-            )
+            if let location = mapView.myLocation {
+                setMapCamera(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                
+                placeMarkers(
+                    latitude: location.coordinate.latitude,
+                    longitude: location.coordinate.longitude
+                )
+            }
             
             mapNeedUpdation = false
             mapView.isHidden = false
