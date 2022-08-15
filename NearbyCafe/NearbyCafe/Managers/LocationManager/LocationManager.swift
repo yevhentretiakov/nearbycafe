@@ -19,10 +19,10 @@ class LocationManager: NSObject {
     
     override init() {
         super.init()
-        setup()
+        configure()
     }
     
-    func setup() {
+    func configure() {
         locationManager.delegate = self
     }
     
@@ -31,6 +31,35 @@ class LocationManager: NSObject {
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
         }
+    }
+    
+    func getAddress(latitude: Double, longitude: Double, completion: @escaping (String) -> Void) {
+        var address = [String]()
+        let geoCoder = CLGeocoder()
+        let location = CLLocation(latitude: latitude, longitude: longitude)
+        
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+            guard error == nil else {
+                completion("")
+                return
+            }
+            
+            let placeMark = placemarks?[0]
+            
+            if let street = placeMark?.thoroughfare {
+                address.append(street)
+            }
+            
+            if let city = placeMark?.locality {
+                address.append(city)
+            }
+            
+            if let country = placeMark?.country {
+                address.append(country)
+            }
+            
+            completion(address.joined(separator: ", "))
+        })
     }
 }
 

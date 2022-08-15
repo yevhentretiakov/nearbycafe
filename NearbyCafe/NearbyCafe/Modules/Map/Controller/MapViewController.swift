@@ -87,50 +87,41 @@ final class MapViewController: UIViewController {
     private func setMarkers(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         mapView.clear()
         
+        for type in placeTypes {
+            fetchPlaces(for: type)
+        }
+    }
+    
+    private func fetchPlaces(for type: String) {
         guard let location = mapView.myLocation else { return }
         
+        let userLatitude = location.coordinate.latitude
+        let userLongitude = location.coordinate.longitude
+        
         // Get list of places for each type
-        for type in placeTypes {
-            networkService.fetch(PlaceListResponse.self, from: .getNearbyPlaces(
-                latitude: location.coordinate.latitude,
-                longitude: location.coordinate.longitude,
-                type: type)) {  [weak self] result in
-                    guard let self = self else { return }
-                        switch result {
-                        case .success(let receivedPlaces):
-                            if let receivedPlaces = receivedPlaces?.results {
-                                    // Place markers for places
-                                    for place in receivedPlaces {
-                                        DispatchQueue.main.async {
-                                            // Get and set address for place
-                                            self.networkService.fetch(PlaceDetailsResponse.self, from: .getPlaceDetails(placeID: place.place_id)) { result in
-                                                switch result {
-                                                case .success(let placeDetails):
-                                                    if let placeDetails = placeDetails?.result {
-                                                        DispatchQueue.main.async {
-                                                            self.setMarker(latitude: place.geometry.location.latitude,
-                                                                           longitude: place.geometry.location.longitude,
-                                                                           title: place.name,
-                                                                           snippet: placeDetails.address)
-                                                        }
-                                                    } else {
-                                                        DispatchQueue.main.async {
-                                                            self.setMarker(latitude: place.geometry.location.latitude,
-                                                                           longitude: place.geometry.location.longitude,
-                                                                           title: place.name)
-                                                        }
-                                                    }
-                                                case .failure(let error):
-                                                    print(error)
-                                                }
-                                            }
-                                        }
+        networkService.get(PlaceListResponse.self, from: .getNearbyPlaces(latitude: userLatitude, longitude: userLongitude, type: type)) {  [weak self] result in
+                guard let self = self else { return }
+                    switch result {
+                    case .success(let receivedPlaces):
+                        if let receivedPlaces = receivedPlaces?.results {
+                            for place in receivedPlaces {
+                                
+                                // Get address and set marker for place
+                                let latitude = place.geometry.location.latitude
+                                let longitude = place.geometry.location.longitude
+                                self.locationManager.getAddress(latitude: latitude, longitude: longitude) { address in
+                                    DispatchQueue.main.async {
+                                        self.setMarker(latitude: place.geometry.location.latitude,
+                                                       longitude: place.geometry.location.longitude,
+                                                       title: place.name,
+                                                       snippet: address)
                                     }
+                                }
                             }
-                        case .failure(let error):
-                            print(error)
                         }
-            }
+                    case .failure(let error):
+                        print(error)
+                    }
         }
     }
     

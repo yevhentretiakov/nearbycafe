@@ -12,7 +12,6 @@ struct PlaceListResponse: Codable {
 }
 
 struct Place: Codable {
-    let place_id: String
     let name: String
     let geometry: Geometry
 }

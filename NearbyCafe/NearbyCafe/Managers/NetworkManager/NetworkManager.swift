@@ -9,7 +9,6 @@ import UIKit
 
 enum ApiEndpoint {
     case getNearbyPlaces(latitude: Double, longitude: Double, type: String)
-    case getPlaceDetails(placeID: String)
 }
 
 protocol HTTPRequest {
@@ -23,21 +22,17 @@ extension ApiEndpoint: HTTPRequest {
             let baseURL = "https://maps.googleapis.com/maps/api/place"
             let path = "/nearbysearch/json?location=\(latitude),\(longitude)&radius=5000&type=\(type)&key=\(APIKeys.gmap)"
             return baseURL + path
-        case .getPlaceDetails(let placeID):
-            let baseURL = "https://maps.googleapis.com/maps/api/place"
-            let path = "/details/json?place_id=\(placeID)&fields=formatted_address&key=\(APIKeys.gmap)"
-            return baseURL + path
         }
     }
 }
 
 protocol NetworkManagerProtocol {
-    func fetch<T: Decodable>(_ returnType: T.Type, from endpoint: ApiEndpoint, completion: @escaping (Result<T?, NetworkError>) -> Void)
+    func get<T: Decodable>(_ returnType: T.Type, from endpoint: ApiEndpoint, completion: @escaping (Result<T?, NetworkError>) -> Void)
 }
 
 class NetworkManager: NetworkManagerProtocol {
     
-    func fetch<T: Decodable>(_ returnType: T.Type, from endpoint: ApiEndpoint, completion: @escaping (Result<T?, NetworkError>) -> Void) {
+    func get<T: Decodable>(_ returnType: T.Type, from endpoint: ApiEndpoint, completion: @escaping (Result<T?, NetworkError>) -> Void) {
         
         guard let url = URL(string: endpoint.url) else {
             completion(.failure(.badURL))

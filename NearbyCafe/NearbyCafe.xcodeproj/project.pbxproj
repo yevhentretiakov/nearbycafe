@@ -13,7 +13,6 @@
 		CE30DB5828A10746007F4DC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE30DB5628A10746007F4DC0 /* LaunchScreen.storyboard */; };
 		CE30DB6128A10A4D007F4DC0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30DB5F28A10A4D007F4DC0 /* MapViewController.swift */; };
 		CE30DB6228A10A4D007F4DC0 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE30DB6028A10A4D007F4DC0 /* MapViewController.xib */; };
-		CE3F868128A39BBE00F59D39 /* PlaceDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F868028A39BBE00F59D39 /* PlaceDetailsResponse.swift */; };
 		CE3F868428A3A2E800F59D39 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F868328A3A2E800F59D39 /* NetworkError.swift */; };
 		CE5D7BF628A275A200F7CEE9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D7BF528A275A200F7CEE9 /* NetworkManager.swift */; };
 		CE5D7BF928A275D400F7CEE9 /* PlaceListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D7BF828A275D400F7CEE9 /* PlaceListResponse.swift */; };
@@ -22,6 +21,7 @@
 		CE7F4C6F28A6574E001EA9C6 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C6E28A6574E001EA9C6 /* UIApplication+Extensions.swift */; };
 		CE7F4C7128A676AB001EA9C6 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C7028A676AB001EA9C6 /* UIView+Extensions.swift */; };
 		CE7F4C7328A68751001EA9C6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C7228A68751001EA9C6 /* LocationManager.swift */; };
+		CEF2FC9528AA6361003D1BC6 /* GoogleServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2FC9428AA6361003D1BC6 /* GoogleServicesManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +35,6 @@
 		CE30DB5928A10746007F4DC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE30DB5F28A10A4D007F4DC0 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CE30DB6028A10A4D007F4DC0 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
-		CE3F868028A39BBE00F59D39 /* PlaceDetailsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsResponse.swift; sourceTree = "<group>"; };
 		CE3F868328A3A2E800F59D39 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		CE5D7BF528A275A200F7CEE9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CE5D7BF828A275D400F7CEE9 /* PlaceListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListResponse.swift; sourceTree = "<group>"; };
@@ -44,6 +43,7 @@
 		CE7F4C6E28A6574E001EA9C6 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		CE7F4C7028A676AB001EA9C6 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		CE7F4C7228A68751001EA9C6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		CEF2FC9428AA6361003D1BC6 /* GoogleServicesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleServicesManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,7 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				CE5D7BF828A275D400F7CEE9 /* PlaceListResponse.swift */,
-				CE3F868028A39BBE00F59D39 /* PlaceDetailsResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -204,6 +203,7 @@
 		CE7F4C6728A63836001EA9C6 /* GoogleServicesManager */ = {
 			isa = PBXGroup;
 			children = (
+				CEF2FC9428AA6361003D1BC6 /* GoogleServicesManager.swift */,
 			);
 			path = GoogleServicesManager;
 			sourceTree = "<group>";
@@ -341,11 +341,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF2FC9528AA6361003D1BC6 /* GoogleServicesManager.swift in Sources */,
 				CE7F4C6F28A6574E001EA9C6 /* UIApplication+Extensions.swift in Sources */,
 				CE30DB4C28A10743007F4DC0 /* AppDelegate.swift in Sources */,
 				CE30DB6128A10A4D007F4DC0 /* MapViewController.swift in Sources */,
 				CE7F4C6D28A651CE001EA9C6 /* UIViewController+Extensions.swift in Sources */,
-				CE3F868128A39BBE00F59D39 /* PlaceDetailsResponse.swift in Sources */,
 				CE3F868428A3A2E800F59D39 /* NetworkError.swift in Sources */,
 				CE5D7BF628A275A200F7CEE9 /* NetworkManager.swift in Sources */,
 				CE30DB4E28A10743007F4DC0 /* SceneDelegate.swift in Sources */,
