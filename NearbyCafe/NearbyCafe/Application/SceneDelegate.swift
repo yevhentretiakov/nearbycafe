@@ -14,11 +14,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
+        setupRootView(scene: scene)
+    }
+    
+    private func setupRootView(scene: UIScene) {
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let navController = UINavigationController(rootViewController: MapViewController())
-        window?.rootViewController = navController
+        let navigationController = UINavigationController(rootViewController: MapViewController())
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
     
