@@ -6,14 +6,13 @@
 //
 
 import UIKit
-import CoreLocation
 import GoogleMaps
 import GooglePlaces
 
 final class MapViewController: UIViewController {
     
     private var locationManager = CLLocationManager()
-    private var networkService = NetworkManager()
+    private let networkService = NetworkManager()
     
     private var mapView: GMSMapView!
     private var mapNeedUpdation = false
@@ -29,10 +28,7 @@ final class MapViewController: UIViewController {
         button.setImage(UIImage(systemName: "location.north.fill"), for: .normal)
         
         button.addCornerRadius(60 / 2)
-        button.addShadow(color: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25),
-                         offset: CGSize(width: 0.0, height: 2.0),
-                         opacity: 1.0,
-                         radius: 2)
+        button.addShadow()
         
         // Specify action for button
         button.addTarget(self, action: #selector(centerButtonTapped), for: .touchUpInside)
@@ -58,14 +54,10 @@ final class MapViewController: UIViewController {
     }
     
     private func setupMap() {
-        let camera = GMSCameraPosition.camera(
-            withLatitude: defaultLocation.coordinate.latitude,
-            longitude: defaultLocation.coordinate.longitude,
-            zoom: zoomLevel
-        )
-        
         // create map view
-        mapView = GMSMapView.map(withFrame: view.frame, camera: camera)
+        mapView = GMSMapView.map(withFrame: view.frame, camera: GMSCameraPosition())
+        setMapCamera(latitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude)
+        
         mapView.isHidden = true
         
         layoutMap()
@@ -97,11 +89,11 @@ final class MapViewController: UIViewController {
     }
     
     private func startLocationManager() {
-        // Initialize the location manager.
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
+        // Initialize the location manager.
         let status = locationManager.authorizationStatus
         
         // Check if user denied acces
@@ -178,6 +170,15 @@ final class MapViewController: UIViewController {
         }
     }
     
+    private func setMapCamera(latitude: Double, longitude: Double) {
+        let camera = GMSCameraPosition.camera(
+            withLatitude: latitude,
+            longitude: longitude,
+            zoom: zoomLevel
+        )
+        mapView.camera = camera
+    }
+   
     @objc private func centerButtonTapped() {
         // Check if app have access to user location
         let status = locationManager.authorizationStatus
@@ -185,12 +186,7 @@ final class MapViewController: UIViewController {
             showMapAlert()
         } else {
             placeMarkers(latitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude)
-            let camera = GMSCameraPosition.camera(
-                withLatitude: defaultLocation.coordinate.latitude,
-                longitude: defaultLocation .coordinate.longitude,
-                zoom: zoomLevel
-            )
-            mapView.animate(to: camera)
+            setMapCamera(latitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude)
         }
     }
 }
@@ -207,13 +203,7 @@ extension MapViewController: CLLocationManagerDelegate {
         )
         
         if mapView.isHidden || mapNeedUpdation {
-            // Move map camera to user location
-            let camera = GMSCameraPosition.camera(
-                withLatitude: defaultLocation.coordinate.latitude,
-                longitude: defaultLocation.coordinate.longitude,
-                zoom: zoomLevel
-            )
-            mapView.camera = camera
+            setMapCamera(latitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude)
             
             placeMarkers(
                 latitude: defaultLocation.coordinate.latitude,
