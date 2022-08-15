@@ -11,7 +11,9 @@ extension UIApplication {
     
     static func openAppSettings() {
         if let url = URL(string: UIApplication.openSettingsURLString) {
+            print("aa")
             if UIApplication.shared.canOpenURL(url) {
+                print("cc")
                 UIApplication.shared.open(url)
             }
          }

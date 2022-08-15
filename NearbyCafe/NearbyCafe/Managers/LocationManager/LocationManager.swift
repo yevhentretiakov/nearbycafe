@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 
 protocol LocationManagerDelegateProtocol: AnyObject {
-    func statusDenied()
+    func locationReceived(location: CLLocation)
 }
 
 class LocationManager: NSObject {
@@ -37,25 +37,8 @@ class LocationManager: NSObject {
 extension LocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .notDetermined:
-            print("Auth: notDetermined")
-        case .restricted:
-            print("Auth: restricted")
-        case .denied:
-            print("Auth: denied")
-        case .authorizedAlways:
-            print("Auth: authorizedAlways")
-        case .authorizedWhenInUse:
-            print("Auth: authorizedWhenInUse")
-        case .authorized:
-            print("Auth: authorized")
-        default:
-            print("Auth: default")
+        if let location = locations.first {
+            delegate?.locationReceived(location: location)
         }
     }
 }
