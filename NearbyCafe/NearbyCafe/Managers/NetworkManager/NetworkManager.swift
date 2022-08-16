@@ -32,13 +32,15 @@ protocol NetworkManagerProtocol {
 
 class NetworkManager: NetworkManagerProtocol {
     
+    private static let decoder = JSONDecoder()
+    
     func get<T: Decodable>(_ returnType: T.Type, from endpoint: ApiEndpoint, completion: @escaping (Result<T?, NetworkError>) -> Void) {
         
         guard let url = URL(string: endpoint.url) else {
             completion(.failure(.badURL))
             return
         }
-
+        
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if error != nil {
                 if let error = error as? NetworkError {
@@ -60,8 +62,7 @@ class NetworkManager: NetworkManagerProtocol {
             }
             
             do {
-                let decoder = JSONDecoder()
-                let obj = try decoder.decode(T.self, from: data)
+                let obj = try NetworkManager.decoder.decode(T.self, from: data)
                 completion(.success(obj))
             } catch {
                 completion(.failure(.invalidData))

@@ -8,19 +8,19 @@
 import Foundation
 
 struct PlaceListResponse: Codable {
-    let results: [Place]
+    let results: [PlaceModel]
 }
 
-struct Place: Codable {
+struct PlaceModel: Codable {
     let name: String
-    let geometry: Geometry
+    let geometry: GeometryModel
 }
 
-struct Geometry: Codable {
-    let location: Location
+struct GeometryModel: Codable {
+    let location: LocationModel
 }
 
-struct Location: Codable {
+struct LocationModel: Codable {
     let latitude, longitude: Double
     
     enum CodingKeys: String, CodingKey {

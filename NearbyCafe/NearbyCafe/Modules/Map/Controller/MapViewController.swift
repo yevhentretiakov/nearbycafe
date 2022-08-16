@@ -94,7 +94,7 @@ final class MapViewController: UIViewController {
     }
     
     private func fetchPlaces(for type: String) {
-        guard let location = mapView.myLocation else { return }
+        guard let location = locationManager.currentLocation else { return }
         
         let userLatitude = location.coordinate.latitude
         let userLongitude = location.coordinate.longitude
@@ -155,7 +155,7 @@ final class MapViewController: UIViewController {
     }
     
     @objc private func centerButtonTapped() {
-        if let location = mapView.myLocation {
+        if let location = locationManager.currentLocation {
             updateMap(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         } else {
             showMapAlert()
@@ -165,7 +165,7 @@ final class MapViewController: UIViewController {
 
 extension MapViewController: LocationManagerDelegateProtocol {
     func locationReceived(location: CLLocation) {
-        if let location = mapView.myLocation, mapLocationSetted == false {
+        if let location = locationManager.currentLocation, mapLocationSetted == false {
             updateMap(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         }
     }

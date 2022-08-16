@@ -21,6 +21,7 @@ protocol LocationManagerProtocol {
 class LocationManager: NSObject, LocationManagerProtocol {
     
     private var locationManager = CLLocationManager()
+    public private(set) var currentLocation: CLLocation?
     weak var delegate: LocationManagerDelegateProtocol?
     
     override init() {
@@ -73,6 +74,7 @@ extension LocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
+            currentLocation = location
             delegate?.locationReceived(location: location)
         }
     }
