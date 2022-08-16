@@ -4,21 +4,17 @@ PODS:
   - GoogleMaps/Base (7.0.0)
   - GoogleMaps/Maps (7.0.0):
     - GoogleMaps/Base
-  - GooglePlaces (7.0.0)
 
 DEPENDENCIES:
   - GoogleMaps (= 7.0.0)
-  - GooglePlaces (= 7.0.0)
 
 SPEC REPOS:
   trunk:
     - GoogleMaps
-    - GooglePlaces
 
 SPEC CHECKSUMS:
   GoogleMaps: 6e9c923ca035989709fcb5771544fda4cc5fa2a4
-  GooglePlaces: 8dba710bed6160a2e4b85e84aaafdbcc0b4010d8
 
-PODFILE CHECKSUM: b1a7b382675255b8a4564401f4a10b8fbd54aecd
+PODFILE CHECKSUM: cfd802bc3b8145ee3581f13e96f780a40261e438
 
 COCOAPODS: 1.11.2

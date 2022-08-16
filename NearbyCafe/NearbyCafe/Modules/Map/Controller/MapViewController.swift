@@ -7,7 +7,6 @@
 
 import UIKit
 import GoogleMaps
-import GooglePlaces
 
 final class MapViewController: UIViewController {
     

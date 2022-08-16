@@ -7,6 +7,5 @@ target 'NearbyCafe' do
 
   # Pods for NearbyCafe
   pod 'GoogleMaps', '7.0.0'
-  pod 'GooglePlaces', '7.0.0'
 
 end
