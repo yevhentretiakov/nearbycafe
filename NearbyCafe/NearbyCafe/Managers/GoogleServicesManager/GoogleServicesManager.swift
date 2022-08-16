@@ -6,18 +6,19 @@
 //
 
 import GoogleMaps
-import GooglePlaces
 import Foundation
 
-class GoogleServicesManager {
-    
-    private var mapView: GMSMapView!
+protocol GoogleServicesManagerProtocol {
+    func configure()
+}
+
+class GoogleServicesManager: GoogleServicesManagerProtocol {
     
     init() {
-        
+        configure()
     }
     
-    func setup() {
-        
+    func configure() {
+        GMSServices.provideAPIKey(EnvironmentConfig.googleMapsApiKey)
     }
 }

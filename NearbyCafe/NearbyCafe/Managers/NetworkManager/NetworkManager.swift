@@ -20,7 +20,7 @@ extension ApiEndpoint: HTTPRequest {
         switch self {
         case .getNearbyPlaces(let latitude, let longitude, let type):
             let baseURL = "https://maps.googleapis.com/maps/api/place"
-            let path = "/nearbysearch/json?location=\(latitude),\(longitude)&radius=5000&type=\(type)&key=\(APIKeys.gmap)"
+            let path = "/nearbysearch/json?location=\(latitude),\(longitude)&radius=5000&type=\(type)&key=\(EnvironmentConfig.googleMapsApiKey)"
             return baseURL + path
         }
     }

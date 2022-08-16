@@ -13,7 +13,9 @@ final class MapViewController: UIViewController {
     
     private let locationManager = LocationManager()
     private let networkService = NetworkManager()
+    private let googleServiceManager = GoogleServicesManager()
     
+    // This variable needs to prevent map auto update every time when location is received and allow this update only first time
     private var mapLocationSetted = false
     
     private var mapView: GMSMapView!
@@ -137,6 +139,7 @@ final class MapViewController: UIViewController {
     private func setMarker(latitude: Double, longitude: Double, title: String? = nil, snippet: String? = nil) {
         let position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let marker = GMSMarker(position: position)
+        
         if let title = title {
             marker.title = title
         }

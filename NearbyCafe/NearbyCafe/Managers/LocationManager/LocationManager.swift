@@ -12,7 +12,13 @@ protocol LocationManagerDelegateProtocol: AnyObject {
     func locationReceived(location: CLLocation)
 }
 
-class LocationManager: NSObject {
+protocol LocationManagerProtocol {
+    func configure()
+    func start()
+    func getAddress(latitude: Double, longitude: Double, completion: @escaping (String) -> Void)
+}
+
+class LocationManager: NSObject, LocationManagerProtocol {
     
     private var locationManager = CLLocationManager()
     weak var delegate: LocationManagerDelegateProtocol?
