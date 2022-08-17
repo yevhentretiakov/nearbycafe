@@ -16,11 +16,11 @@ final class MapViewController: UIViewController {
     private let networkService = NetworkManager()
     private let googleServiceManager = GoogleServicesManager()
     
+    private var places = [PlaceModel]()
+    
     // This variable needs to prevent map auto update every time when location is received and allow this update only first time
-    private var mapLocationSetted = false
-    
     private var mapView: GMSMapView!
-    
+    private var mapLocationSetted = false
     private let placeTypes = ["cafe", "restaurant"]
     private let zoomLevel: Float = 12
     private let defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
@@ -74,54 +74,37 @@ final class MapViewController: UIViewController {
                   actions: [laterAction,settingsAction])
     }
     
-    private func setMarkers(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+    private func getPlaces(latitude: Double, longitude: Double) {
+        for type in placeTypes {
+            networkService.get(PlaceListResponse.self,
+                               from: .getNearbyPlaces(latitude: latitude,
+                                                      longitude: longitude,
+                                                      type: type)) {  [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let receivedPlaces):
+                    if let receivedPlaces = receivedPlaces {
+                        self.places = receivedPlaces.results
+                        self.addPlacesMarkers()
+                    }
+                case .failure(let error):
+                    self.showAlert(title: "Network Error", message: error.rawValue)
+                }
+            }
+        }
+    }
+    
+    private func addPlacesMarkers() {
         mapView.clear()
         
-        for type in placeTypes {
-            getPlaces(for: type)
+        places.forEach { place in
+            DispatchQueue.main.async {
+                self.addMarker(latitude: place.geometry.location.latitude,
+                          longitude: place.geometry.location.longitude,
+                          title: place.name,
+                          snippet: place.vicinity)
+            }
         }
-    }
-    
-    private func getPlaces(for type: String) {
-        guard let location = locationManager.currentLocation else { return }
-        
-        // Get list of places for each type
-        networkService.get(PlaceListResponse.self,
-                           from: .getNearbyPlaces(latitude: location.coordinate.latitude,
-                                                  longitude: location.coordinate.longitude,
-                                                  type: type)) {  [weak self] result in
-                guard let self = self else { return }
-                    switch result {
-                    case .success(let receivedPlaces):
-                        if let receivedPlaces = receivedPlaces?.results {
-                            for place in receivedPlaces {
-                                
-                                // Get address and set marker for place
-                                let latitude = place.geometry.location.latitude
-                                let longitude = place.geometry.location.longitude
-                                self.locationManager.getAddress(latitude: latitude, longitude: longitude) { address in
-                                    DispatchQueue.main.async {
-                                        self.addMarker(latitude: place.geometry.location.latitude,
-                                                       longitude: place.geometry.location.longitude,
-                                                       title: place.name,
-                                                       snippet: address)
-                                    }
-                                }
-                            }
-                        }
-                    case .failure(let error):
-                        self.showAlert(title: "Network Error", message: error.rawValue)
-                    }
-        }
-    }
-    
-    private func setMapCamera(latitude: Double, longitude: Double) {
-        let camera = GMSCameraPosition.camera(
-            withLatitude: latitude,
-            longitude: longitude,
-            zoom: zoomLevel
-        )
-        mapView.camera = camera
     }
     
     private func addMarker(latitude: Double, longitude: Double, title: String? = nil, snippet: String? = nil) {
@@ -134,9 +117,19 @@ final class MapViewController: UIViewController {
         marker.map = mapView
     }
     
+    private func setMapCamera(latitude: Double, longitude: Double) {
+        let camera = GMSCameraPosition.camera(
+            withLatitude: latitude,
+            longitude: longitude,
+            zoom: zoomLevel
+        )
+        mapView.camera = camera
+    }
+    
     private func updateMap(latitude: Double, longitude: Double) {
         mapLocationSetted = true
-        setMarkers(latitude: latitude, longitude: longitude)
+        getPlaces(latitude: latitude, longitude: longitude)
+        addPlacesMarkers()
         setMapCamera(latitude: latitude, longitude: longitude)
     }
     

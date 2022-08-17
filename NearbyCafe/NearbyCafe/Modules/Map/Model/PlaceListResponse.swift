@@ -14,6 +14,7 @@ struct PlaceListResponse: Codable {
 struct PlaceModel: Codable {
     let name: String
     let geometry: GeometryModel
+    let vicinity: String
 }
 
 struct GeometryModel: Codable {
