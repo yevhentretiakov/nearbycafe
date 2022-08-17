@@ -11,12 +11,12 @@ import CoreLocation
 // MARK: - Protocols
 
 protocol LocationManagerDelegateProtocol: AnyObject {
-    func didReceivedLocation(location: CLLocation)
+    func didReceiveLocation(location: CLLocation)
 }
 
 protocol LocationManagerProtocol {
-    func configure()
-    func startUpdateLocation()
+    func startUpdatingLocation()
+    func stopUpdatingLocation()
 }
 
 class LocationManager: NSObject, LocationManagerProtocol {
@@ -36,15 +36,19 @@ class LocationManager: NSObject, LocationManagerProtocol {
     
     // MARK: - Methods
     
-    func configure() {
+    private func configure() {
         locationManager.delegate = self
     }
     
-    func startUpdateLocation() {
+    func startUpdatingLocation() {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
         }
+    }
+    
+    func stopUpdatingLocation() {
+        locationManager.stopUpdatingLocation()
     }
 }
 
@@ -54,7 +58,7 @@ extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             currentLocation = location
-            delegate?.didReceivedLocation(location: location)
+            delegate?.didReceiveLocation(location: location)
         }
     }
 }

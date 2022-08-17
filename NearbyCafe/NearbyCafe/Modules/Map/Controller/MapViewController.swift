@@ -20,7 +20,6 @@ final class MapViewController: UIViewController {
     
     // This variable needs to prevent map auto update every time when location is received and allow this update only first time
     private var mapView: GMSMapView!
-    private var mapLocationSetted = false
     private let placeTypes = ["cafe", "restaurant"]
     private let zoomLevel: Float = 12
     private let defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
@@ -30,7 +29,7 @@ final class MapViewController: UIViewController {
         button.backgroundColor = .white
         button.setImage(UIImage(systemName: "location.north.fill"), for: .normal)
         button.addTarget(self, action: #selector(centerButtonTapped), for: .touchUpInside)
-        button.cornerRadius = 60 / 2
+        button.makeRounded()
         button.setShadow()
         return button
     }()
@@ -52,7 +51,7 @@ final class MapViewController: UIViewController {
     // MARK: - View Methods
     
     private func setupLocationManager() {
-        locationManager.startUpdateLocation()
+        locationManager.startUpdatingLocation()
         locationManager.delegate = self
     }
     
@@ -83,8 +82,8 @@ final class MapViewController: UIViewController {
                 guard let self = self else { return }
                 switch result {
                 case .success(let receivedPlaces):
-                    if let receivedPlaces = receivedPlaces {
-                        self.places = receivedPlaces.results
+                    self.places = receivedPlaces?.results ?? []
+                    DispatchQueue.main.async {
                         self.addPlacesMarkers()
                     }
                 case .failure(let error):
@@ -98,12 +97,10 @@ final class MapViewController: UIViewController {
         mapView.clear()
         
         places.forEach { place in
-            DispatchQueue.main.async {
-                self.addMarker(latitude: place.geometry.location.latitude,
-                          longitude: place.geometry.location.longitude,
-                          title: place.name,
-                          snippet: place.vicinity)
-            }
+            self.addMarker(latitude: place.geometry.location.latitude,
+                      longitude: place.geometry.location.longitude,
+                      title: place.name,
+                      snippet: place.vicinity)
         }
     }
     
@@ -127,17 +124,14 @@ final class MapViewController: UIViewController {
     }
     
     private func updateMap(latitude: Double, longitude: Double) {
-        mapLocationSetted = true
         getPlaces(latitude: latitude, longitude: longitude)
         addPlacesMarkers()
         setMapCamera(latitude: latitude, longitude: longitude)
     }
     
     @objc private func centerButtonTapped() {
-        if let location = locationManager.currentLocation {
-            updateMap(latitude: location.coordinate.latitude,
-                      longitude: location.coordinate.longitude)
-        } else {
+        locationManager.startUpdatingLocation()
+        if locationManager.currentLocation == nil {
             showMapAlert()
         }
     }
@@ -172,8 +166,9 @@ final class MapViewController: UIViewController {
 // MARK: - LocationManagerDelegateProtocol
 
 extension MapViewController: LocationManagerDelegateProtocol {
-    func didReceivedLocation(location: CLLocation) {
-        if let location = locationManager.currentLocation, mapLocationSetted == false {
+    func didReceiveLocation(location: CLLocation) {
+        if let location = locationManager.currentLocation {
+            locationManager.stopUpdatingLocation()
             updateMap(latitude: location.coordinate.latitude,
                       longitude: location.coordinate.longitude)
         }

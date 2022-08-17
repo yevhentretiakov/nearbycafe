@@ -7,26 +7,11 @@
 
 import UIKit
 
+// MARK: - Protocols
+
 protocol HTTPRequest {
     var url: String { get }
 }
-
-enum ApiEndpoint {
-    case getNearbyPlaces(latitude: Double, longitude: Double, type: String)
-}
-
-extension ApiEndpoint: HTTPRequest {
-    var url: String {
-        switch self {
-        case .getNearbyPlaces(let latitude, let longitude, let type):
-            let baseURL = "https://maps.googleapis.com/maps/api/place"
-            let path = "/nearbysearch/json?location=\(latitude),\(longitude)&radius=5000&type=\(type)&key=\(EnvironmentConfig.googleMapsApiKey)"
-            return baseURL + path
-        }
-    }
-}
-
-// MARK: - Protocols
 
 protocol NetworkManagerProtocol {
     func get<T: Decodable>(_ returnType: T.Type, from endpoint: ApiEndpoint, completion: @escaping (Result<T?, NetworkError>) -> Void)
