@@ -7,12 +7,12 @@
 
 import UIKit
 
-enum ApiEndpoint {
-    case getNearbyPlaces(latitude: Double, longitude: Double, type: String)
-}
-
 protocol HTTPRequest {
     var url: String { get }
+}
+
+enum ApiEndpoint {
+    case getNearbyPlaces(latitude: Double, longitude: Double, type: String)
 }
 
 extension ApiEndpoint: HTTPRequest {
@@ -26,13 +26,19 @@ extension ApiEndpoint: HTTPRequest {
     }
 }
 
+// MARK: - Protocols
+
 protocol NetworkManagerProtocol {
     func get<T: Decodable>(_ returnType: T.Type, from endpoint: ApiEndpoint, completion: @escaping (Result<T?, NetworkError>) -> Void)
 }
 
 class NetworkManager: NetworkManagerProtocol {
     
+    // MARK: - Properties
+    
     private static let decoder = JSONDecoder()
+    
+    // MARK: - Methods
     
     func get<T: Decodable>(_ returnType: T.Type, from endpoint: ApiEndpoint, completion: @escaping (Result<T?, NetworkError>) -> Void) {
         
@@ -62,8 +68,8 @@ class NetworkManager: NetworkManagerProtocol {
             }
             
             do {
-                let obj = try NetworkManager.decoder.decode(T.self, from: data)
-                completion(.success(obj))
+                let decodedData = try NetworkManager.decoder.decode(T.self, from: data)
+                completion(.success(decodedData))
             } catch {
                 completion(.failure(.invalidData))
             }

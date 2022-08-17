@@ -8,32 +8,40 @@
 import Foundation
 import CoreLocation
 
+// MARK: - Protocols
+
 protocol LocationManagerDelegateProtocol: AnyObject {
-    func locationReceived(location: CLLocation)
+    func didReceivedLocation(location: CLLocation)
 }
 
 protocol LocationManagerProtocol {
     func configure()
-    func start()
+    func startUpdateLocation()
     func getAddress(latitude: Double, longitude: Double, completion: @escaping (String) -> Void)
 }
 
 class LocationManager: NSObject, LocationManagerProtocol {
     
-    private var locationManager = CLLocationManager()
-    public private(set) var currentLocation: CLLocation?
+    // MARK: - Properties
+    
+    private let locationManager = CLLocationManager()
+    private(set) var currentLocation: CLLocation?
     weak var delegate: LocationManagerDelegateProtocol?
+    
+    // MARK: - Life Cycle Methods
     
     override init() {
         super.init()
         configure()
     }
     
+    // MARK: - Methods
+    
     func configure() {
         locationManager.delegate = self
     }
     
-    func start() {
+    func startUpdateLocation() {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
@@ -70,12 +78,13 @@ class LocationManager: NSObject, LocationManagerProtocol {
     }
 }
 
+// MARK: - CLLocationManagerDelegate
+
 extension LocationManager: CLLocationManagerDelegate {
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             currentLocation = location
-            delegate?.locationReceived(location: location)
+            delegate?.didReceivedLocation(location: location)
         }
     }
 }

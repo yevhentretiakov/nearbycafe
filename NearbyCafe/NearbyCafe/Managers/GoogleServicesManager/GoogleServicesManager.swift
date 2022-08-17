@@ -8,15 +8,21 @@
 import GoogleMaps
 import Foundation
 
+// MARK: - Protocols
+
 protocol GoogleServicesManagerProtocol {
     func configure()
 }
 
 class GoogleServicesManager: GoogleServicesManagerProtocol {
     
+    // MARK: - Life Cycle Methods
+    
     init() {
         configure()
     }
+    
+    // MARK: - Methods
     
     func configure() {
         GMSServices.provideAPIKey(EnvironmentConfig.googleMapsApiKey)

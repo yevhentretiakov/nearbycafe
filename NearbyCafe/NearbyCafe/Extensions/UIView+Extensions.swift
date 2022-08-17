@@ -8,13 +8,17 @@
 import UIKit
 
 extension UIView {
-    
-    func addCornerRadius(_ radius: CGFloat) {
-        layer.cornerRadius = radius
-        layer.masksToBounds = false
+    var cornerRadius: CGFloat {
+        get {
+            return self.layer.cornerRadius
+        }
+        set {
+            self.layer.cornerRadius = newValue
+            self.layer.masksToBounds = false
+        }
     }
     
-    func addShadow(color: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25),
+    func setShadow(color: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25),
                    offset: CGSize = CGSize(width: 0.0, height: 2.0),
                    opacity: Float = 1.0,
                    radius: CGFloat = 2) {
