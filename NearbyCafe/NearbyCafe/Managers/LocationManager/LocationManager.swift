@@ -5,7 +5,7 @@
 //  Created by user on 12.08.2022.
 //
 
-import Foundation
+import UIKit
 import CoreLocation
 
 // MARK: - Protocols
@@ -42,13 +42,36 @@ class LocationManager: NSObject, LocationManagerProtocol {
     
     func startUpdatingLocation() {
         if CLLocationManager.locationServicesEnabled() {
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
+            switch locationManager.authorizationStatus {
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+            case .authorizedAlways, .authorizedWhenInUse, .authorized:
+                locationManager.startUpdatingLocation()
+            case .denied, .restricted:
+                locationManager.stopUpdatingLocation()
+                LocationManager.showLocationAlert()
+            default:
+                locationManager.stopUpdatingLocation()
+                LocationManager.showLocationAlert()
+            }
         }
     }
     
     func stopUpdatingLocation() {
         locationManager.stopUpdatingLocation()
+    }
+    
+    private static func showLocationAlert() {
+        if let rootViewController = UIApplication.shared.windows.last?.rootViewController {
+            let laterAction = UIAlertAction(title: "Later", style: UIAlertAction.Style.destructive, handler: nil)
+            let settingsAction = UIAlertAction(title: "Settings", style: UIAlertAction.Style.default) {_ in
+                UIApplication.openAppSettings()
+            }
+        
+            rootViewController.showAlert(title: "Can't get your location",
+                                     message: "Share your location to fully use the app.",
+                                     actions: [laterAction,settingsAction])
+        }
     }
 }
 
@@ -57,8 +80,13 @@ class LocationManager: NSObject, LocationManagerProtocol {
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
+            stopUpdatingLocation()
             currentLocation = location
             delegate?.didReceiveLocation(location: location)
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        startUpdatingLocation()
     }
 }

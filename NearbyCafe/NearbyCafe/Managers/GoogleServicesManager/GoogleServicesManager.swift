@@ -11,10 +11,10 @@ import Foundation
 // MARK: - Protocols
 
 protocol GoogleServicesManagerProtocol {
-    
+    func configure()
 }
 
-class GoogleServicesManager: GoogleServicesManagerProtocol {
+class GoogleServicesManager {
     
     // MARK: - Life Cycle Methods
     
@@ -24,7 +24,7 @@ class GoogleServicesManager: GoogleServicesManagerProtocol {
     
     // MARK: - Methods
     
-    private func configure() {
+    func configure() {
         GMSServices.provideAPIKey(EnvironmentConfig.googleMapsApiKey)
     }
 }

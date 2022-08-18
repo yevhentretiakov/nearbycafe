@@ -34,11 +34,7 @@ final class MapViewController: UIViewController {
         return button
     }()
     
-    private lazy var laterAction = UIAlertAction(title: "Later", style: UIAlertAction.Style.destructive, handler: nil)
-    private lazy var settingsAction = UIAlertAction(title: "Settings", style: UIAlertAction.Style.default) {_ in
-        UIApplication.openAppSettings()
-    }
-    
+   
     // MARK: - Life Cycle Methods
     
     override func viewDidLoad() {
@@ -51,8 +47,8 @@ final class MapViewController: UIViewController {
     // MARK: - View Methods
     
     private func setupLocationManager() {
-        locationManager.startUpdatingLocation()
         locationManager.delegate = self
+        locationManager.startUpdatingLocation()
     }
     
     private func setupMap() {
@@ -65,12 +61,6 @@ final class MapViewController: UIViewController {
         
         layoutMap()
         layoutCenterButton()
-    }
-    
-    private func showMapAlert() {
-        showAlert(title: "Can't get your location",
-                  message: "Share your location to fully use the app.",
-                  actions: [laterAction,settingsAction])
     }
     
     private func getPlaces(latitude: Double, longitude: Double) {
@@ -97,19 +87,16 @@ final class MapViewController: UIViewController {
         mapView.clear()
         
         places.forEach { place in
-            self.addMarker(latitude: place.geometry.location.latitude,
-                      longitude: place.geometry.location.longitude,
-                      title: place.name,
-                      snippet: place.vicinity)
+            self.addMarker(place: place)
         }
     }
     
-    private func addMarker(latitude: Double, longitude: Double, title: String? = nil, snippet: String? = nil) {
-        let position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    private func addMarker(place: PlaceModel) {
+        let position = CLLocationCoordinate2D(latitude: place.geometry.location.latitude, longitude: place.geometry.location.longitude)
         let marker = GMSMarker(position: position)
         
-        marker.title = title
-        marker.snippet = snippet
+        marker.title = place.name
+        marker.snippet = place.vicinity
         
         marker.map = mapView
     }
@@ -131,9 +118,6 @@ final class MapViewController: UIViewController {
     
     @objc private func centerButtonTapped() {
         locationManager.startUpdatingLocation()
-        if locationManager.currentLocation == nil {
-            showMapAlert()
-        }
     }
     
     // MARK: - Layout Methods
@@ -168,7 +152,6 @@ final class MapViewController: UIViewController {
 extension MapViewController: LocationManagerDelegateProtocol {
     func didReceiveLocation(location: CLLocation) {
         if let location = locationManager.currentLocation {
-            locationManager.stopUpdatingLocation()
             updateMap(latitude: location.coordinate.latitude,
                       longitude: location.coordinate.longitude)
         }
