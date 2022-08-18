@@ -9,21 +9,43 @@
 /* Begin PBXBuildFile section */
 		CE30DB4C28A10743007F4DC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30DB4B28A10743007F4DC0 /* AppDelegate.swift */; };
 		CE30DB4E28A10743007F4DC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30DB4D28A10743007F4DC0 /* SceneDelegate.swift */; };
-		CE30DB5028A10743007F4DC0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30DB4F28A10743007F4DC0 /* ViewController.swift */; };
-		CE30DB5328A10743007F4DC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE30DB5128A10743007F4DC0 /* Main.storyboard */; };
 		CE30DB5528A10746007F4DC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE30DB5428A10746007F4DC0 /* Assets.xcassets */; };
 		CE30DB5828A10746007F4DC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE30DB5628A10746007F4DC0 /* LaunchScreen.storyboard */; };
+		CE30DB6128A10A4D007F4DC0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30DB5F28A10A4D007F4DC0 /* MapViewController.swift */; };
+		CE30DB6228A10A4D007F4DC0 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE30DB6028A10A4D007F4DC0 /* MapViewController.xib */; };
+		CE3F868428A3A2E800F59D39 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F868328A3A2E800F59D39 /* NetworkError.swift */; };
+		CE5D7BF628A275A200F7CEE9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D7BF528A275A200F7CEE9 /* NetworkManager.swift */; };
+		CE5D7BF928A275D400F7CEE9 /* PlaceListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D7BF828A275D400F7CEE9 /* PlaceListResponse.swift */; };
+		CE7F4C6A28A645CD001EA9C6 /* EnvironmentConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C6928A645CD001EA9C6 /* EnvironmentConfig.swift */; };
+		CE7F4C6D28A651CE001EA9C6 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C6C28A651CE001EA9C6 /* UIViewController+Extensions.swift */; };
+		CE7F4C6F28A6574E001EA9C6 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C6E28A6574E001EA9C6 /* UIApplication+Extensions.swift */; };
+		CE7F4C7128A676AB001EA9C6 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C7028A676AB001EA9C6 /* UIView+Extensions.swift */; };
+		CE7F4C7328A68751001EA9C6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C7228A68751001EA9C6 /* LocationManager.swift */; };
+		CECD848428AD172F00038053 /* ApiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD848328AD172F00038053 /* ApiEndpoint.swift */; };
+		CEF2FC9528AA6361003D1BC6 /* GoogleServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2FC9428AA6361003D1BC6 /* GoogleServicesManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A8CBB60478668D96AB97E9E /* Pods-NearbyCafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearbyCafe.release.xcconfig"; path = "Target Support Files/Pods-NearbyCafe/Pods-NearbyCafe.release.xcconfig"; sourceTree = "<group>"; };
+		27A3A8CF0FA5BABFFA3E3DB5 /* Pods-NearbyCafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearbyCafe.debug.xcconfig"; path = "Target Support Files/Pods-NearbyCafe/Pods-NearbyCafe.debug.xcconfig"; sourceTree = "<group>"; };
 		CE30DB4828A10743007F4DC0 /* NearbyCafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearbyCafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE30DB4B28A10743007F4DC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE30DB4D28A10743007F4DC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE30DB4F28A10743007F4DC0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CE30DB5228A10743007F4DC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE30DB5428A10746007F4DC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE30DB5728A10746007F4DC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE30DB5928A10746007F4DC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE30DB5F28A10A4D007F4DC0 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		CE30DB6028A10A4D007F4DC0 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		CE3F868328A3A2E800F59D39 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		CE5D7BF528A275A200F7CEE9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		CE5D7BF828A275D400F7CEE9 /* PlaceListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListResponse.swift; sourceTree = "<group>"; };
+		CE7F4C6928A645CD001EA9C6 /* EnvironmentConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConfig.swift; sourceTree = "<group>"; };
+		CE7F4C6C28A651CE001EA9C6 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		CE7F4C6E28A6574E001EA9C6 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
+		CE7F4C7028A676AB001EA9C6 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		CE7F4C7228A68751001EA9C6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		CECD848328AD172F00038053 /* ApiEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEndpoint.swift; sourceTree = "<group>"; };
+		CEF2FC9428AA6361003D1BC6 /* GoogleServicesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleServicesManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,11 +59,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		900800624562DF1C4769453C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9B44A8DA4B5B7CEAEE3BB05C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				27A3A8CF0FA5BABFFA3E3DB5 /* Pods-NearbyCafe.debug.xcconfig */,
+				1A8CBB60478668D96AB97E9E /* Pods-NearbyCafe.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CE30DB3F28A10743007F4DC0 = {
 			isa = PBXGroup;
 			children = (
 				CE30DB4A28A10743007F4DC0 /* NearbyCafe */,
 				CE30DB4928A10743007F4DC0 /* Products */,
+				9B44A8DA4B5B7CEAEE3BB05C /* Pods */,
+				900800624562DF1C4769453C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +96,137 @@
 		CE30DB4A28A10743007F4DC0 /* NearbyCafe */ = {
 			isa = PBXGroup;
 			children = (
-				CE30DB4B28A10743007F4DC0 /* AppDelegate.swift */,
-				CE30DB4D28A10743007F4DC0 /* SceneDelegate.swift */,
-				CE30DB4F28A10743007F4DC0 /* ViewController.swift */,
-				CE30DB5128A10743007F4DC0 /* Main.storyboard */,
-				CE30DB5428A10746007F4DC0 /* Assets.xcassets */,
-				CE30DB5628A10746007F4DC0 /* LaunchScreen.storyboard */,
+				CE7F4C5E28A634EC001EA9C6 /* Application */,
+				CE7F4C5F28A6351E001EA9C6 /* Modules */,
+				CE7F4C6628A63811001EA9C6 /* Managers */,
+				CE7F4C6B28A64F78001EA9C6 /* Extensions */,
+				CE3F868228A3A2CB00F59D39 /* Utilities */,
+				CE30DB6428A10BB0007F4DC0 /* Support Files */,
 				CE30DB5928A10746007F4DC0 /* Info.plist */,
 			);
 			path = NearbyCafe;
+			sourceTree = "<group>";
+		};
+		CE30DB6428A10BB0007F4DC0 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				CE30DB5428A10746007F4DC0 /* Assets.xcassets */,
+				CE30DB5628A10746007F4DC0 /* LaunchScreen.storyboard */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		CE3F868228A3A2CB00F59D39 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CE3F868328A3A2E800F59D39 /* NetworkError.swift */,
+				CE7F4C6928A645CD001EA9C6 /* EnvironmentConfig.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		CE5D7BF428A2758000F7CEE9 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				CE5D7BF528A275A200F7CEE9 /* NetworkManager.swift */,
+				CECD848328AD172F00038053 /* ApiEndpoint.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		CE7F4C5E28A634EC001EA9C6 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				CE30DB4D28A10743007F4DC0 /* SceneDelegate.swift */,
+				CE30DB4B28A10743007F4DC0 /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		CE7F4C5F28A6351E001EA9C6 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F4C6028A63530001EA9C6 /* Map */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		CE7F4C6028A63530001EA9C6 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F4C6528A63615001EA9C6 /* CustomUI */,
+				CE7F4C6328A63587001EA9C6 /* Model */,
+				CE7F4C6228A63543001EA9C6 /* Controller */,
+				CE7F4C6128A63538001EA9C6 /* View */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		CE7F4C6128A63538001EA9C6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE30DB6028A10A4D007F4DC0 /* MapViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE7F4C6228A63543001EA9C6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CE30DB5F28A10A4D007F4DC0 /* MapViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CE7F4C6328A63587001EA9C6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE5D7BF828A275D400F7CEE9 /* PlaceListResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE7F4C6528A63615001EA9C6 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		CE7F4C6628A63811001EA9C6 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F4C6828A63877001EA9C6 /* LocationManager */,
+				CE7F4C6728A63836001EA9C6 /* GoogleServicesManager */,
+				CE5D7BF428A2758000F7CEE9 /* NetworkManager */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		CE7F4C6728A63836001EA9C6 /* GoogleServicesManager */ = {
+			isa = PBXGroup;
+			children = (
+				CEF2FC9428AA6361003D1BC6 /* GoogleServicesManager.swift */,
+			);
+			path = GoogleServicesManager;
+			sourceTree = "<group>";
+		};
+		CE7F4C6828A63877001EA9C6 /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F4C7228A68751001EA9C6 /* LocationManager.swift */,
+			);
+			path = LocationManager;
+			sourceTree = "<group>";
+		};
+		CE7F4C6B28A64F78001EA9C6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F4C6C28A651CE001EA9C6 /* UIViewController+Extensions.swift */,
+				CE7F4C6E28A6574E001EA9C6 /* UIApplication+Extensions.swift */,
+				CE7F4C7028A676AB001EA9C6 /* UIView+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +236,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE30DB5C28A10746007F4DC0 /* Build configuration list for PBXNativeTarget "NearbyCafe" */;
 			buildPhases = (
+				837CB6C53879A7D6C9EA2E75 /* [CP] Check Pods Manifest.lock */,
 				CE30DB4428A10743007F4DC0 /* Sources */,
 				CE30DB4528A10743007F4DC0 /* Frameworks */,
 				CE30DB4628A10743007F4DC0 /* Resources */,
+				136D8A02969A367F0885FC05 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -126,35 +290,79 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE30DB5828A10746007F4DC0 /* LaunchScreen.storyboard in Resources */,
+				CE30DB6228A10A4D007F4DC0 /* MapViewController.xib in Resources */,
 				CE30DB5528A10746007F4DC0 /* Assets.xcassets in Resources */,
-				CE30DB5328A10743007F4DC0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		136D8A02969A367F0885FC05 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NearbyCafe/Pods-NearbyCafe-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NearbyCafe/Pods-NearbyCafe-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NearbyCafe/Pods-NearbyCafe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		837CB6C53879A7D6C9EA2E75 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NearbyCafe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CE30DB4428A10743007F4DC0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE30DB5028A10743007F4DC0 /* ViewController.swift in Sources */,
+				CEF2FC9528AA6361003D1BC6 /* GoogleServicesManager.swift in Sources */,
+				CE7F4C6F28A6574E001EA9C6 /* UIApplication+Extensions.swift in Sources */,
 				CE30DB4C28A10743007F4DC0 /* AppDelegate.swift in Sources */,
+				CECD848428AD172F00038053 /* ApiEndpoint.swift in Sources */,
+				CE30DB6128A10A4D007F4DC0 /* MapViewController.swift in Sources */,
+				CE7F4C6D28A651CE001EA9C6 /* UIViewController+Extensions.swift in Sources */,
+				CE3F868428A3A2E800F59D39 /* NetworkError.swift in Sources */,
+				CE5D7BF628A275A200F7CEE9 /* NetworkManager.swift in Sources */,
 				CE30DB4E28A10743007F4DC0 /* SceneDelegate.swift in Sources */,
+				CE7F4C7328A68751001EA9C6 /* LocationManager.swift in Sources */,
+				CE7F4C6A28A645CD001EA9C6 /* EnvironmentConfig.swift in Sources */,
+				CE5D7BF928A275D400F7CEE9 /* PlaceListResponse.swift in Sources */,
+				CE7F4C7128A676AB001EA9C6 /* UIView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CE30DB5128A10743007F4DC0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CE30DB5228A10743007F4DC0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CE30DB5628A10746007F4DC0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -216,7 +424,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +478,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -282,6 +490,7 @@
 		};
 		CE30DB5D28A10746007F4DC0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27A3A8CF0FA5BABFFA3E3DB5 /* Pods-NearbyCafe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -292,7 +501,6 @@
 				INFOPLIST_FILE = NearbyCafe/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -310,6 +518,7 @@
 		};
 		CE30DB5E28A10746007F4DC0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A8CBB60478668D96AB97E9E /* Pods-NearbyCafe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -320,7 +529,6 @@
 				INFOPLIST_FILE = NearbyCafe/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
