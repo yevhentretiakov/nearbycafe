@@ -47,11 +47,7 @@ class LocationManager: NSObject, LocationManagerProtocol {
                 locationManager.requestWhenInUseAuthorization()
             case .authorizedAlways, .authorizedWhenInUse, .authorized:
                 locationManager.startUpdatingLocation()
-            case .denied, .restricted:
-                locationManager.stopUpdatingLocation()
-                LocationManager.showLocationAlert()
             default:
-                locationManager.stopUpdatingLocation()
                 LocationManager.showLocationAlert()
             }
         }
@@ -62,16 +58,13 @@ class LocationManager: NSObject, LocationManagerProtocol {
     }
     
     private static func showLocationAlert() {
-        if let rootViewController = UIApplication.shared.windows.last?.rootViewController {
-            let laterAction = UIAlertAction(title: "Later", style: UIAlertAction.Style.destructive, handler: nil)
-            let settingsAction = UIAlertAction(title: "Settings", style: UIAlertAction.Style.default) {_ in
-                UIApplication.openAppSettings()
-            }
-        
-            rootViewController.showAlert(title: "Can't get your location",
-                                     message: "Share your location to fully use the app.",
-                                     actions: [laterAction,settingsAction])
+        let laterAction = UIAlertAction(title: "Later", style: UIAlertAction.Style.destructive, handler: nil)
+        let settingsAction = UIAlertAction(title: "Settings", style: UIAlertAction.Style.default) {_ in
+            UIApplication.openAppSettings()
         }
+        UIApplication.rootViewController?.showAlert(title: "Can't get your location",
+                                 message: "Share your location to fully use the app.",
+                                 actions: [laterAction,settingsAction])
     }
 }
 

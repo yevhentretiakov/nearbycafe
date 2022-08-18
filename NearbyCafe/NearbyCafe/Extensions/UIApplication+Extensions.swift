@@ -15,4 +15,8 @@ extension UIApplication {
             }
          }
     }
+    
+    static var rootViewController: UIViewController? {
+        return UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.rootViewController
+    }
 }
