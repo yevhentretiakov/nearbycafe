@@ -15,6 +15,8 @@ struct PlaceModel: Codable {
     let name: String
     let geometry: GeometryModel
     let vicinity: String
+    let icon: String
+    let rating: Double
 }
 
 struct GeometryModel: Codable {

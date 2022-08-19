@@ -7,26 +7,30 @@
 
 import UIKit
 
-class ListViewController: UIViewController {
-    
-    private let cellID = "ListTableViewCell"
+final class ListViewController: UIViewController {
+    // MARK: - Properties
     
     @IBOutlet weak var tableView: UITableView!
+    var places = [PlaceModel]()
     
-    var places = [Place]()
+    // MARK: - Life Cycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "List"
-        configureTableView()
+        setupTableView()
     }
     
-    private func configureTableView() {
+    // MARK: - Methods
+    
+    private func setupTableView() {
         tableView.register(ListTableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.register(UINib(nibName: cellID, bundle: nil), forCellReuseIdentifier: cellID)
+        tableView.register(UINib(nibName: "ListTableViewCell", bundle: nil), forCellReuseIdentifier: ListTableViewCell.cellID)
     }
 }
+
+// MARK: - UITableViewDataSource
 
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,7 +38,7 @@ extension ListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! ListTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.cellID, for: indexPath) as! ListTableViewCell
         
         let place = places[indexPath.row]
         cell.setPlace(place: place)
@@ -42,6 +46,8 @@ extension ListViewController: UITableViewDataSource {
         return cell
     }
 }
+
+// MARK: - UITableViewDelegate
 
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
