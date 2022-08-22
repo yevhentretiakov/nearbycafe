@@ -14,7 +14,17 @@ struct PlaceListResponse: Codable {
 struct PlaceModel: Codable {
     let name: String
     let geometry: GeometryModel
-    let vicinity: String
+    let address: String
+    let imageUrl: String
+    let rating: Double
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case geometry
+        case address = "vicinity"
+        case imageUrl = "icon"
+        case rating
+    }
 }
 
 struct GeometryModel: Codable {

@@ -14,6 +14,10 @@
 		CE30DB6128A10A4D007F4DC0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30DB5F28A10A4D007F4DC0 /* MapViewController.swift */; };
 		CE30DB6228A10A4D007F4DC0 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE30DB6028A10A4D007F4DC0 /* MapViewController.xib */; };
 		CE3F868428A3A2E800F59D39 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F868328A3A2E800F59D39 /* NetworkError.swift */; };
+		CE3F868828A3BF7000F59D39 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F868628A3BF7000F59D39 /* ListViewController.swift */; };
+		CE3F868928A3BF7000F59D39 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3F868728A3BF7000F59D39 /* ListViewController.xib */; };
+		CE3F869028A3C99600F59D39 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F868E28A3C99600F59D39 /* ListTableViewCell.swift */; };
+		CE3F869128A3C99600F59D39 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3F868F28A3C99600F59D39 /* ListTableViewCell.xib */; };
 		CE5D7BF628A275A200F7CEE9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D7BF528A275A200F7CEE9 /* NetworkManager.swift */; };
 		CE5D7BF928A275D400F7CEE9 /* PlaceListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D7BF828A275D400F7CEE9 /* PlaceListResponse.swift */; };
 		CE7F4C6A28A645CD001EA9C6 /* EnvironmentConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C6928A645CD001EA9C6 /* EnvironmentConfig.swift */; };
@@ -21,7 +25,9 @@
 		CE7F4C6F28A6574E001EA9C6 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C6E28A6574E001EA9C6 /* UIApplication+Extensions.swift */; };
 		CE7F4C7128A676AB001EA9C6 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C7028A676AB001EA9C6 /* UIView+Extensions.swift */; };
 		CE7F4C7328A68751001EA9C6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C7228A68751001EA9C6 /* LocationManager.swift */; };
+		CEB148F728B37D40006A3C45 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB148F628B37D40006A3C45 /* UIImageView+Extensions.swift */; };
 		CECD848428AD172F00038053 /* ApiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD848328AD172F00038053 /* ApiEndpoint.swift */; };
+		CED9527A28AF78D3002BAFF5 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9527928AF78D3002BAFF5 /* RoundButton.swift */; };
 		CEF2FC9528AA6361003D1BC6 /* GoogleServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2FC9428AA6361003D1BC6 /* GoogleServicesManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +43,10 @@
 		CE30DB5F28A10A4D007F4DC0 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CE30DB6028A10A4D007F4DC0 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		CE3F868328A3A2E800F59D39 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		CE3F868628A3BF7000F59D39 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		CE3F868728A3BF7000F59D39 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
+		CE3F868E28A3C99600F59D39 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		CE3F868F28A3C99600F59D39 /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 		CE5D7BF528A275A200F7CEE9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CE5D7BF828A275D400F7CEE9 /* PlaceListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListResponse.swift; sourceTree = "<group>"; };
 		CE7F4C6928A645CD001EA9C6 /* EnvironmentConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConfig.swift; sourceTree = "<group>"; };
@@ -44,7 +54,9 @@
 		CE7F4C6E28A6574E001EA9C6 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		CE7F4C7028A676AB001EA9C6 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		CE7F4C7228A68751001EA9C6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		CEB148F628B37D40006A3C45 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		CECD848328AD172F00038053 /* ApiEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEndpoint.swift; sourceTree = "<group>"; };
+		CED9527928AF78D3002BAFF5 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		CEF2FC9428AA6361003D1BC6 /* GoogleServicesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleServicesManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +137,15 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		CE3F868C28A3C96900F59D39 /* ListTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE3F868E28A3C99600F59D39 /* ListTableViewCell.swift */,
+				CE3F868F28A3C99600F59D39 /* ListTableViewCell.xib */,
+			);
+			path = ListTableViewCell;
+			sourceTree = "<group>";
+		};
 		CE5D7BF428A2758000F7CEE9 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +167,7 @@
 		CE7F4C5F28A6351E001EA9C6 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				CED9527428AF70E0002BAFF5 /* List */,
 				CE7F4C6028A63530001EA9C6 /* Map */,
 			);
 			path = Modules;
@@ -189,6 +211,7 @@
 		CE7F4C6528A63615001EA9C6 /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
+				CED9527828AF77D7002BAFF5 /* RoundButton */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -225,8 +248,51 @@
 				CE7F4C6C28A651CE001EA9C6 /* UIViewController+Extensions.swift */,
 				CE7F4C6E28A6574E001EA9C6 /* UIApplication+Extensions.swift */,
 				CE7F4C7028A676AB001EA9C6 /* UIView+Extensions.swift */,
+				CEB148F628B37D40006A3C45 /* UIImageView+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CED9527428AF70E0002BAFF5 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				CED9527728AF7105002BAFF5 /* CustomUI */,
+				CED9527628AF70EB002BAFF5 /* Controller */,
+				CED9527528AF70E6002BAFF5 /* View */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		CED9527528AF70E6002BAFF5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE3F868728A3BF7000F59D39 /* ListViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CED9527628AF70EB002BAFF5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CE3F868628A3BF7000F59D39 /* ListViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CED9527728AF7105002BAFF5 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				CE3F868C28A3C96900F59D39 /* ListTableViewCell */,
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		CED9527828AF77D7002BAFF5 /* RoundButton */ = {
+			isa = PBXGroup;
+			children = (
+				CED9527928AF78D3002BAFF5 /* RoundButton.swift */,
+			);
+			path = RoundButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,7 +357,9 @@
 			files = (
 				CE30DB5828A10746007F4DC0 /* LaunchScreen.storyboard in Resources */,
 				CE30DB6228A10A4D007F4DC0 /* MapViewController.xib in Resources */,
+				CE3F868928A3BF7000F59D39 /* ListViewController.xib in Resources */,
 				CE30DB5528A10746007F4DC0 /* Assets.xcassets in Resources */,
+				CE3F869128A3C99600F59D39 /* ListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,19 +412,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CED9527A28AF78D3002BAFF5 /* RoundButton.swift in Sources */,
 				CEF2FC9528AA6361003D1BC6 /* GoogleServicesManager.swift in Sources */,
 				CE7F4C6F28A6574E001EA9C6 /* UIApplication+Extensions.swift in Sources */,
 				CE30DB4C28A10743007F4DC0 /* AppDelegate.swift in Sources */,
+				CEB148F728B37D40006A3C45 /* UIImageView+Extensions.swift in Sources */,
 				CECD848428AD172F00038053 /* ApiEndpoint.swift in Sources */,
 				CE30DB6128A10A4D007F4DC0 /* MapViewController.swift in Sources */,
 				CE7F4C6D28A651CE001EA9C6 /* UIViewController+Extensions.swift in Sources */,
 				CE3F868428A3A2E800F59D39 /* NetworkError.swift in Sources */,
 				CE5D7BF628A275A200F7CEE9 /* NetworkManager.swift in Sources */,
+				CE3F868828A3BF7000F59D39 /* ListViewController.swift in Sources */,
 				CE30DB4E28A10743007F4DC0 /* SceneDelegate.swift in Sources */,
 				CE7F4C7328A68751001EA9C6 /* LocationManager.swift in Sources */,
 				CE7F4C6A28A645CD001EA9C6 /* EnvironmentConfig.swift in Sources */,
 				CE5D7BF928A275D400F7CEE9 /* PlaceListResponse.swift in Sources */,
 				CE7F4C7128A676AB001EA9C6 /* UIView+Extensions.swift in Sources */,
+				CE3F869028A3C99600F59D39 /* ListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

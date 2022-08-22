@@ -18,23 +18,28 @@ final class MapViewController: UIViewController {
     
     private var places = [PlaceModel]()
     
-    // This variable needs to prevent map auto update every time when location is received and allow this update only first time
     private var mapView: GMSMapView!
     private let placeTypes = ["cafe", "restaurant"]
     private let zoomLevel: Float = 12
     private let defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
     
-    private lazy var centerButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
-        button.backgroundColor = .white
+    private let roundButtonDiameter: CGFloat = 60
+    
+    private lazy var centerButton: RoundButton = {
+        let button = RoundButton(frame: CGRect(x: 0, y: 0, width: roundButtonDiameter, height: roundButtonDiameter))
         button.setImage(UIImage(systemName: "location.north.fill"), for: .normal)
         button.addTarget(self, action: #selector(centerButtonTapped), for: .touchUpInside)
-        button.makeRounded()
-        button.setShadow()
         return button
     }()
     
-   
+    private lazy var listButton: RoundButton = {
+        let button = RoundButton(frame: CGRect(x: 0, y: 0, width: roundButtonDiameter, height: roundButtonDiameter))
+        button.setImage(UIImage(systemName: "list.bullet"), for: .normal)
+        button.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    
     // MARK: - Life Cycle Methods
     
     override func viewDidLoad() {
@@ -61,6 +66,7 @@ final class MapViewController: UIViewController {
         
         layoutMap()
         layoutCenterButton()
+        layoutListButton()
     }
     
     private func getPlaces(latitude: Double, longitude: Double) {
@@ -96,7 +102,7 @@ final class MapViewController: UIViewController {
         let marker = GMSMarker(position: position)
         
         marker.title = place.name
-        marker.snippet = place.vicinity
+        marker.snippet = place.address
         
         marker.map = mapView
     }
@@ -120,6 +126,12 @@ final class MapViewController: UIViewController {
         locationManager.startUpdatingLocation()
     }
     
+    @objc private func listButtonTapped() {
+        let viewController = ListViewController()
+        viewController.places = places
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     // MARK: - Layout Methods
     
     private func layoutMap() {
@@ -139,10 +151,22 @@ final class MapViewController: UIViewController {
         
         centerButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            centerButton.heightAnchor.constraint(equalToConstant: 60),
-            centerButton.widthAnchor.constraint(equalToConstant: 60),
+            centerButton.heightAnchor.constraint(equalToConstant: roundButtonDiameter),
+            centerButton.widthAnchor.constraint(equalToConstant: roundButtonDiameter),
             centerButton.trailingAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             centerButton.bottomAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+        ])
+    }
+    
+    private func layoutListButton() {
+        mapView.addSubview(listButton)
+        
+        listButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            listButton.heightAnchor.constraint(equalToConstant: roundButtonDiameter),
+            listButton.widthAnchor.constraint(equalToConstant: roundButtonDiameter),
+            listButton.trailingAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+            listButton.bottomAnchor.constraint(equalTo: centerButton.topAnchor, constant: -10)
         ])
     }
 }
