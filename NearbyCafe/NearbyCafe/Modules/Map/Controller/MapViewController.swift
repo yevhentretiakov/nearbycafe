@@ -23,15 +23,17 @@ final class MapViewController: UIViewController {
     private let zoomLevel: Float = 12
     private let defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
     
+    private let roundButtonDiameter: CGFloat = 60
+    
     private lazy var centerButton: RoundButton = {
-        let button = RoundButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        let button = RoundButton(frame: CGRect(x: 0, y: 0, width: roundButtonDiameter, height: roundButtonDiameter))
         button.setImage(UIImage(systemName: "location.north.fill"), for: .normal)
         button.addTarget(self, action: #selector(centerButtonTapped), for: .touchUpInside)
         return button
     }()
     
     private lazy var listButton: RoundButton = {
-        let button = RoundButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        let button = RoundButton(frame: CGRect(x: 0, y: 0, width: roundButtonDiameter, height: roundButtonDiameter))
         button.setImage(UIImage(systemName: "list.bullet"), for: .normal)
         button.addTarget(self, action: #selector(listButtonTapped), for: .touchUpInside)
         return button
@@ -100,7 +102,7 @@ final class MapViewController: UIViewController {
         let marker = GMSMarker(position: position)
         
         marker.title = place.name
-        marker.snippet = place.vicinity
+        marker.snippet = place.address
         
         marker.map = mapView
     }
@@ -149,8 +151,8 @@ final class MapViewController: UIViewController {
         
         centerButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            centerButton.heightAnchor.constraint(equalToConstant: 60),
-            centerButton.widthAnchor.constraint(equalToConstant: 60),
+            centerButton.heightAnchor.constraint(equalToConstant: roundButtonDiameter),
+            centerButton.widthAnchor.constraint(equalToConstant: roundButtonDiameter),
             centerButton.trailingAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             centerButton.bottomAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ])
@@ -161,10 +163,10 @@ final class MapViewController: UIViewController {
         
         listButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            listButton.heightAnchor.constraint(equalToConstant: 60),
-            listButton.widthAnchor.constraint(equalToConstant: 60),
+            listButton.heightAnchor.constraint(equalToConstant: roundButtonDiameter),
+            listButton.widthAnchor.constraint(equalToConstant: roundButtonDiameter),
             listButton.trailingAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.trailingAnchor, constant: -10),
-            listButton.bottomAnchor.constraint(equalTo: mapView.safeAreaLayoutGuide.bottomAnchor, constant: -90)
+            listButton.bottomAnchor.constraint(equalTo: centerButton.topAnchor, constant: -10)
         ])
     }
 }

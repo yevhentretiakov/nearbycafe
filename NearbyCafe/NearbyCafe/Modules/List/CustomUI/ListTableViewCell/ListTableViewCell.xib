@@ -73,7 +73,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="addressLabel" destination="UYx-7R-iMk" id="V8G-Wf-SXS"/>
-                <outlet property="icon" destination="WaL-VH-pGa" id="qHA-5X-jP4"/>
+                <outlet property="iconImageView" destination="WaL-VH-pGa" id="qIC-ew-kp1"/>
                 <outlet property="nameLabel" destination="UkR-YN-S0U" id="ae4-6R-rQL"/>
                 <outlet property="rateLabel" destination="bM6-nr-PaZ" id="h0K-ob-Uyp"/>
             </connections>

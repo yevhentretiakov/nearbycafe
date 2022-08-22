@@ -10,7 +10,7 @@ import UIKit
 final class ListViewController: UIViewController {
     // MARK: - Properties
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     var places = [PlaceModel]()
     
     // MARK: - Life Cycle Methods
@@ -18,15 +18,18 @@ final class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "List"
+        setupNavigationBar()
         setupTableView()
     }
     
     // MARK: - Methods
     
+    private func setupNavigationBar() {
+        title = ListViewController.navigationTitle
+    }
+    
     private func setupTableView() {
-        tableView.register(ListTableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.register(UINib(nibName: "ListTableViewCell", bundle: nil), forCellReuseIdentifier: ListTableViewCell.cellID)
+        tableView.register(UINib(nibName: "ListTableViewCell", bundle: nil), forCellReuseIdentifier: String(describing: ListTableViewCell.self))
     }
 }
 
@@ -38,10 +41,10 @@ extension ListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.cellID, for: indexPath) as! ListTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ListTableViewCell.self), for: indexPath) as! ListTableViewCell
         
         let place = places[indexPath.row]
-        cell.setPlace(place: place)
+        cell.configure(place: place)
         
         return cell
     }
@@ -53,4 +56,10 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+}
+
+// MARK: - Fileprivate extensions
+
+fileprivate extension ListViewController {
+    static let navigationTitle = "List"
 }
