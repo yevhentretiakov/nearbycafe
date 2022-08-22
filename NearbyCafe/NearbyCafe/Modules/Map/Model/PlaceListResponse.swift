@@ -19,11 +19,11 @@ struct PlaceModel: Codable {
     let rating: Double
     
     enum CodingKeys: String, CodingKey {
-        case name = "name"
-        case geometry = "geometry"
+        case name
+        case geometry
         case address = "vicinity"
         case imageUrl = "icon"
-        case rating = "rating"
+        case rating
     }
 }
 

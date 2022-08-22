@@ -25,7 +25,7 @@ final class ListViewController: UIViewController {
     // MARK: - Methods
     
     private func setupNavigationBar() {
-        title = ListViewController.navigationTitle
+        title = .navigationTitle
     }
     
     private func setupTableView() {
@@ -44,7 +44,7 @@ extension ListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ListTableViewCell.self), for: indexPath) as! ListTableViewCell
         
         let place = places[indexPath.row]
-        cell.configure(place: place)
+        cell.configure(with: place)
         
         return cell
     }
@@ -60,6 +60,6 @@ extension ListViewController: UITableViewDelegate {
 
 // MARK: - Fileprivate extensions
 
-fileprivate extension ListViewController {
+private extension String {
     static let navigationTitle = "List"
 }

@@ -13,15 +13,15 @@ final class ListTableViewCell: UITableViewCell {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var addressLabel: UILabel!
     @IBOutlet private weak var rateLabel: UILabel!
-    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet private weak var iconImageView: UIImageView!
     
     // MARK: - Methods
     
-    func configure(place: PlaceModel) {
+    func configure(with place: PlaceModel) {
         self.nameLabel.text = place.name
         self.rateLabel.text = String(place.rating)
         iconImageView.image = nil
-        iconImageView.configureImage(imageUrl: place.imageUrl)
+        iconImageView.setImage(with: place.imageUrl) { _ in }
         self.addressLabel.text = place.address
     }
 }
