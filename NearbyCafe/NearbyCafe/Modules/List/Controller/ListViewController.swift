@@ -58,7 +58,7 @@ extension ListViewController: UITableViewDelegate {
     }
 }
 
-// MARK: - Fileprivate extensions
+// MARK: - Private extensions
 
 private extension String {
     static let navigationTitle = "List"

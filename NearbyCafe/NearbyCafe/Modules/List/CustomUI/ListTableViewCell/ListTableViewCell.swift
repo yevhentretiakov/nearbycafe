@@ -21,7 +21,7 @@ final class ListTableViewCell: UITableViewCell {
         self.nameLabel.text = place.name
         self.rateLabel.text = String(place.rating)
         iconImageView.image = nil
-        iconImageView.setImage(with: place.imageUrl) { _ in }
+        iconImageView.setImage(with: place.imageUrl)
         self.addressLabel.text = place.address
     }
 }

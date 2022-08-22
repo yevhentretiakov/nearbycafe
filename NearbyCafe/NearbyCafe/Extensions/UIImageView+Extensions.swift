@@ -8,15 +8,16 @@
 import UIKit
 
 extension UIImageView {
-    func setImage(with imageUrl: String, completion: @escaping (UIImage?) -> Void) {
+    func setImage(with imageUrl: String, completion: ((UIImage?) -> Void)? = nil) {
         DispatchQueue.global().async {
             if let url = URL(string: imageUrl), let data = try? Data(contentsOf: url) {
                 DispatchQueue.main.async {
-                    self.image = UIImage(data: data)
-                    completion(UIImage(data: data))
+                    let image = UIImage(data: data)
+                    self.image = image
+                    completion?(image)
                 }
             } else {
-                completion(nil)
+                completion?(nil)
             }
         }
     }
