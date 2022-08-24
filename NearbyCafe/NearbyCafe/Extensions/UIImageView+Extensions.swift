@@ -8,8 +8,6 @@
 import UIKit
 
 extension UIImageView {
-    typealias ImageBlock = (UIImage?) -> Void
-    
     func setImage(with imageUrl: String, completion: ImageBlock? = nil) {
         DispatchQueue.global().async {
             if let url = URL(string: imageUrl), let data = try? Data(contentsOf: url) {

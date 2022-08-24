@@ -10,8 +10,9 @@ import UIKit
 final class ListViewController: UIViewController {
     // MARK: - Properties
     
+    var presenter: ListViewPresenterProtocol!
+    
     @IBOutlet private weak var tableView: UITableView!
-    var places = [PlaceModel]()
     
     // MARK: - Life Cycle Methods
     
@@ -37,13 +38,13 @@ final class ListViewController: UIViewController {
 
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return places.count
+        return presenter.places.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ListTableViewCell.self), for: indexPath) as! ListTableViewCell
         
-        let place = places[indexPath.row]
+        let place = presenter.places[indexPath.row]
         cell.configure(with: place)
         
         return cell
