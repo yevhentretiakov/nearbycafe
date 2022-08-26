@@ -18,7 +18,6 @@ final class ListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNavigationBar()
         setupTableView()
     }
@@ -38,13 +37,13 @@ final class ListViewController: UIViewController {
 
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.places.count
+        return presenter.getItemsCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ListTableViewCell.self), for: indexPath) as! ListTableViewCell
         
-        let place = presenter.places[indexPath.row]
+        let place = presenter.getItem(at: indexPath.row)
         cell.configure(with: place)
         
         return cell
@@ -63,4 +62,12 @@ extension ListViewController: UITableViewDelegate {
 
 private extension String {
     static let navigationTitle = "List"
+}
+
+// MARK: - ListViewProtocol
+
+extension ListViewController: ListViewProtocol {
+    func updateView() {
+        // tableView.reloadData()
+    }
 }

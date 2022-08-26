@@ -13,11 +13,9 @@ final class MapViewController: UIViewController {
     
     var presenter: MapViewPresenterProtocol!
     
-    private let googleServiceManager = GoogleServicesManager()
-    private let defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
-    private let zoomLevel: Float = 12
-    
     private var mapView: GMSMapView!
+    private let defaultLocation = Location(latitude: -33.869405, longitude: 151.199)
+    private let zoomLevel: Float = 12
     
     private let roundButtonDiameter: CGFloat = 60
     private lazy var centerButton: RoundButton = {
@@ -38,9 +36,8 @@ final class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupMap()
-        presenter.setupLocationManager()
+        presenter.viewDidLoad()
     }
     
     // MARK: - View Methods
@@ -48,11 +45,8 @@ final class MapViewController: UIViewController {
     private func setupMap() {
         // create map view
         mapView = GMSMapView.map(withFrame: view.frame, camera: GMSCameraPosition())
-        setMapCamera(latitude: defaultLocation.coordinate.latitude,
-                     longitude: defaultLocation.coordinate.longitude)
-        
+        setMapCamera(location: defaultLocation)
         mapView.isMyLocationEnabled = true
-        
         layoutMap()
         layoutCenterButton()
         layoutListButton()
@@ -68,17 +62,17 @@ final class MapViewController: UIViewController {
         marker.map = mapView
     }
     
-    private func setMapCamera(latitude: Double, longitude: Double) {
+    private func setMapCamera(location: Location) {
         let camera = GMSCameraPosition.camera(
-            withLatitude: latitude,
-            longitude: longitude,
-            zoom: self.zoomLevel
+            withLatitude: location.latitude,
+            longitude: location.longitude,
+            zoom: zoomLevel
         )
         self.mapView.camera = camera
     }
     
     private func addPlacesMarkers(places: [PlaceModel]) {
-        self.mapView.clear()
+        mapView.clear()
         places.forEach { place in
             self.addMarker(place: place)
         }
@@ -134,15 +128,11 @@ final class MapViewController: UIViewController {
 // MARK: - MapViewProtocol
 
 extension MapViewController: MapViewProtocol {
-    func updateMap(latitude: Double, longitude: Double) {
-        DispatchQueue.main.async {
-            self.addPlacesMarkers(places: self.presenter.places)
-            self.setMapCamera(latitude: latitude, longitude: longitude)
-        }
+    func updateMap(with places: [PlaceModel], location: Location) {
+        addPlacesMarkers(places: places)
+        setMapCamera(location: location)
     }
-    func showAlert(title: String, message: String) {
-        DispatchQueue.main.async {
-            self.showAlert(title: title, message: message)
-        }
+    func presentAlert(title: String, message: String) {
+        showAlert(title: title, message: message)
     }
 }

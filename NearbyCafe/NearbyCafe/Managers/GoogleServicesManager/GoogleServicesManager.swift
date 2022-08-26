@@ -14,7 +14,7 @@ protocol GoogleServicesManagerProtocol {
     func configure()
 }
 
-class GoogleServicesManager {
+class GoogleServicesManager: GoogleServicesManagerProtocol {
     
     // MARK: - Life Cycle Methods
     

@@ -14,12 +14,15 @@
 		CE30DB6128A10A4D007F4DC0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30DB5F28A10A4D007F4DC0 /* MapViewController.swift */; };
 		CE30DB6228A10A4D007F4DC0 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE30DB6028A10A4D007F4DC0 /* MapViewController.xib */; };
 		CE3C28FA28B5054600C71A4C /* MapViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3C28F928B5054600C71A4C /* MapViewPresenter.swift */; };
-		CE3C28FC28B5076500C71A4C /* AssemblyModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3C28FB28B5076500C71A4C /* AssemblyModuleBuilder.swift */; };
 		CE3F868428A3A2E800F59D39 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F868328A3A2E800F59D39 /* NetworkError.swift */; };
 		CE3F868828A3BF7000F59D39 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F868628A3BF7000F59D39 /* ListViewController.swift */; };
 		CE3F868928A3BF7000F59D39 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3F868728A3BF7000F59D39 /* ListViewController.xib */; };
 		CE3F869028A3C99600F59D39 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F868E28A3C99600F59D39 /* ListTableViewCell.swift */; };
 		CE3F869128A3C99600F59D39 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3F868F28A3C99600F59D39 /* ListTableViewCell.xib */; };
+		CE4C1EC828B8BFF50010BA64 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C1EC728B8BFF50010BA64 /* Location.swift */; };
+		CE4C1ECB28B8CEEA0010BA64 /* MapModuleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C1ECA28B8CEEA0010BA64 /* MapModuleRouter.swift */; };
+		CE4C1ECD28B8CF040010BA64 /* MapModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C1ECC28B8CF040010BA64 /* MapModuleBuilder.swift */; };
+		CE4C1ED228B8D51F0010BA64 /* ListModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C1ED128B8D51F0010BA64 /* ListModuleBuilder.swift */; };
 		CE5D7BF628A275A200F7CEE9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D7BF528A275A200F7CEE9 /* NetworkManager.swift */; };
 		CE5D7BF928A275D400F7CEE9 /* PlaceListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D7BF828A275D400F7CEE9 /* PlaceListResponse.swift */; };
 		CE7F4C6A28A645CD001EA9C6 /* EnvironmentConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C6928A645CD001EA9C6 /* EnvironmentConfig.swift */; };
@@ -31,7 +34,6 @@
 		CECD848428AD172F00038053 /* ApiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD848328AD172F00038053 /* ApiEndpoint.swift */; };
 		CED9527A28AF78D3002BAFF5 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9527928AF78D3002BAFF5 /* RoundButton.swift */; };
 		CEEF82C528B614F700FA1DDB /* ListViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF82C428B614F700FA1DDB /* ListViewPresenter.swift */; };
-		CEEF82C728B620DC00FA1DDB /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF82C628B620DC00FA1DDB /* Router.swift */; };
 		CEEF82CB28B62EB000FA1DDB /* CompletionBlocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF82CA28B62EB000FA1DDB /* CompletionBlocks.swift */; };
 		CEF2FC9528AA6361003D1BC6 /* GoogleServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2FC9428AA6361003D1BC6 /* GoogleServicesManager.swift */; };
 /* End PBXBuildFile section */
@@ -48,12 +50,15 @@
 		CE30DB5F28A10A4D007F4DC0 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CE30DB6028A10A4D007F4DC0 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		CE3C28F928B5054600C71A4C /* MapViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewPresenter.swift; sourceTree = "<group>"; };
-		CE3C28FB28B5076500C71A4C /* AssemblyModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyModuleBuilder.swift; sourceTree = "<group>"; };
 		CE3F868328A3A2E800F59D39 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		CE3F868628A3BF7000F59D39 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		CE3F868728A3BF7000F59D39 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
 		CE3F868E28A3C99600F59D39 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		CE3F868F28A3C99600F59D39 /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
+		CE4C1EC728B8BFF50010BA64 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		CE4C1ECA28B8CEEA0010BA64 /* MapModuleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModuleRouter.swift; sourceTree = "<group>"; };
+		CE4C1ECC28B8CF040010BA64 /* MapModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModuleBuilder.swift; sourceTree = "<group>"; };
+		CE4C1ED128B8D51F0010BA64 /* ListModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModuleBuilder.swift; sourceTree = "<group>"; };
 		CE5D7BF528A275A200F7CEE9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CE5D7BF828A275D400F7CEE9 /* PlaceListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListResponse.swift; sourceTree = "<group>"; };
 		CE7F4C6928A645CD001EA9C6 /* EnvironmentConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConfig.swift; sourceTree = "<group>"; };
@@ -65,7 +70,6 @@
 		CECD848328AD172F00038053 /* ApiEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEndpoint.swift; sourceTree = "<group>"; };
 		CED9527928AF78D3002BAFF5 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		CEEF82C428B614F700FA1DDB /* ListViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewPresenter.swift; sourceTree = "<group>"; };
-		CEEF82C628B620DC00FA1DDB /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		CEEF82CA28B62EB000FA1DDB /* CompletionBlocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionBlocks.swift; sourceTree = "<group>"; };
 		CEF2FC9428AA6361003D1BC6 /* GoogleServicesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleServicesManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,6 +161,23 @@
 			path = ListTableViewCell;
 			sourceTree = "<group>";
 		};
+		CE4C1EC928B8CE8B0010BA64 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				CE4C1ECA28B8CEEA0010BA64 /* MapModuleRouter.swift */,
+				CE4C1ECC28B8CF040010BA64 /* MapModuleBuilder.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		CE4C1ECE28B8D4E60010BA64 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				CE4C1ED128B8D51F0010BA64 /* ListModuleBuilder.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		CE5D7BF428A2758000F7CEE9 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +208,7 @@
 		CE7F4C6028A63530001EA9C6 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				CE4C1EC928B8CE8B0010BA64 /* Navigation */,
 				CE7F4C6528A63615001EA9C6 /* CustomUI */,
 				CE7F4C6328A63587001EA9C6 /* Model */,
 				CE7F4C6228A63543001EA9C6 /* Presenter */,
@@ -216,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5D7BF828A275D400F7CEE9 /* PlaceListResponse.swift */,
+				CE4C1EC728B8BFF50010BA64 /* Location.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,8 +254,6 @@
 		CE7F4C6628A63811001EA9C6 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				CEEF82C928B627D900FA1DDB /* Router */,
-				CEEF82C828B627CF00FA1DDB /* AssemblyModuleBuilder */,
 				CE7F4C6828A63877001EA9C6 /* LocationManager */,
 				CE7F4C6728A63836001EA9C6 /* GoogleServicesManager */,
 				CE5D7BF428A2758000F7CEE9 /* NetworkManager */,
@@ -270,6 +291,7 @@
 		CED9527428AF70E0002BAFF5 /* List */ = {
 			isa = PBXGroup;
 			children = (
+				CE4C1ECE28B8D4E60010BA64 /* Navigation */,
 				CED9527728AF7105002BAFF5 /* CustomUI */,
 				CED9527628AF70EB002BAFF5 /* Presenter */,
 				CED9527528AF70E6002BAFF5 /* View */,
@@ -308,22 +330,6 @@
 				CED9527928AF78D3002BAFF5 /* RoundButton.swift */,
 			);
 			path = RoundButton;
-			sourceTree = "<group>";
-		};
-		CEEF82C828B627CF00FA1DDB /* AssemblyModuleBuilder */ = {
-			isa = PBXGroup;
-			children = (
-				CE3C28FB28B5076500C71A4C /* AssemblyModuleBuilder.swift */,
-			);
-			path = AssemblyModuleBuilder;
-			sourceTree = "<group>";
-		};
-		CEEF82C928B627D900FA1DDB /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				CEEF82C628B620DC00FA1DDB /* Router.swift */,
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,16 +455,18 @@
 				CE7F4C6F28A6574E001EA9C6 /* UIApplication+Extensions.swift in Sources */,
 				CE30DB4C28A10743007F4DC0 /* AppDelegate.swift in Sources */,
 				CEB148F728B37D40006A3C45 /* UIImageView+Extensions.swift in Sources */,
-				CE3C28FC28B5076500C71A4C /* AssemblyModuleBuilder.swift in Sources */,
 				CECD848428AD172F00038053 /* ApiEndpoint.swift in Sources */,
 				CE30DB6128A10A4D007F4DC0 /* MapViewController.swift in Sources */,
 				CE7F4C6D28A651CE001EA9C6 /* UIViewController+Extensions.swift in Sources */,
-				CEEF82C728B620DC00FA1DDB /* Router.swift in Sources */,
 				CEEF82C528B614F700FA1DDB /* ListViewPresenter.swift in Sources */,
 				CE3F868428A3A2E800F59D39 /* NetworkError.swift in Sources */,
 				CEEF82CB28B62EB000FA1DDB /* CompletionBlocks.swift in Sources */,
+				CE4C1EC828B8BFF50010BA64 /* Location.swift in Sources */,
 				CE5D7BF628A275A200F7CEE9 /* NetworkManager.swift in Sources */,
 				CE3F868828A3BF7000F59D39 /* ListViewController.swift in Sources */,
+				CE4C1ECD28B8CF040010BA64 /* MapModuleBuilder.swift in Sources */,
+				CE4C1ECB28B8CEEA0010BA64 /* MapModuleRouter.swift in Sources */,
+				CE4C1ED228B8D51F0010BA64 /* ListModuleBuilder.swift in Sources */,
 				CE30DB4E28A10743007F4DC0 /* SceneDelegate.swift in Sources */,
 				CE7F4C7328A68751001EA9C6 /* LocationManager.swift in Sources */,
 				CE7F4C6A28A645CD001EA9C6 /* EnvironmentConfig.swift in Sources */,

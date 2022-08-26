@@ -22,10 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         
-        let navigationController = UINavigationController()
-        let assemblyBuilder = AssemblyModuleBuilder()
-        let router = Router(navigationController: navigationController, assemblyBuilder: assemblyBuilder)
-        router.initialViewController()
+        let mapModuleBuilder = MapModuleBuilder()
+        let navigationController = UINavigationController(rootViewController: mapModuleBuilder.createMapModule())
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

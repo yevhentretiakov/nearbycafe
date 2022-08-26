@@ -5,19 +5,18 @@
 //  Created by user on 23.08.2022.
 //
 
-import Foundation
+import UIKit
 import CoreLocation
 
 // MARK: - Protocols
 
 protocol MapViewProtocol: AnyObject {
-    func updateMap(latitude: Double, longitude: Double)
-    func showAlert(title: String, message: String)
+    func updateMap(with places: [PlaceModel], location: Location)
+    func presentAlert(title: String, message: String)
 }
 
 protocol MapViewPresenterProtocol {
-    var places: [PlaceModel] { get set }
-    func setupLocationManager()
+    func viewDidLoad()
     func startUpdatingLocation()
     func showPlacesList()
 }
@@ -25,41 +24,45 @@ protocol MapViewPresenterProtocol {
 class MapViewPresenter: MapViewPresenterProtocol {
     // MARK: - Properties
     
-    weak var view: MapViewProtocol?
-    private let router: RouterProtocol
+    private weak var view: MapViewProtocol?
+    private let googleServiceManager = GoogleServicesManager()
+    private let router: MapModuleRouterProtocol
     private let networkManager = NetworkManager()
     private let locationManager = LocationManager()
-    var places = [PlaceModel]()
+    private var places = [PlaceModel]()
     private let placeTypes = ["cafe", "restaurant"]
     
     // MARK: - Life Cycle Method
     
-    init(view: MapViewProtocol, router: RouterProtocol) {
+    init(view: MapViewProtocol, router: MapModuleRouterProtocol) {
         self.view = view
         self.router = router
     }
     
     // MARK: - Methods
     
-    private func getPlaces(latitude: Double, longitude: Double, completion: @escaping EmptyBlock) {
+    private func getPlaces(location: Location) {
         for type in placeTypes {
             networkManager.get(PlaceListResponse.self,
-                               from: .getNearbyPlaces(latitude: latitude,
-                                                      longitude: longitude,
+                               from: .getNearbyPlaces(location: location,
                                                       type: type)) {  [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let receivedPlaces):
                     self.places = receivedPlaces?.results ?? []
-                    completion()
+                    DispatchQueue.main.async {
+                        self.view?.updateMap(with: self.places, location: location)
+                    }
                 case .failure(let error):
-                    self.view?.showAlert(title: "Network Error", message: error.rawValue)
+                    DispatchQueue.main.async {
+                        self.view?.presentAlert(title: "Network Error", message: error.rawValue)
+                    }
                 }
             }
         }
     }
     
-    func setupLocationManager() {
+    func viewDidLoad() {
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
     }
@@ -77,12 +80,7 @@ class MapViewPresenter: MapViewPresenterProtocol {
 
 extension MapViewPresenter: LocationManagerDelegateProtocol {
     func didReceiveLocation(location: CLLocation) {
-        let latitude = location.coordinate.latitude
-        let longitude = location.coordinate.longitude
-        getPlaces(latitude: latitude,
-                  longitude: longitude){
-            self.view?.updateMap(latitude: latitude,
-                                 longitude: longitude)
-        }
+        getPlaces(location: Location(latitude: location.coordinate.latitude,
+                                     longitude: location.coordinate.longitude))
     }
 }
