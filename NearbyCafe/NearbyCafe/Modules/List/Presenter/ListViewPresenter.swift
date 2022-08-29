@@ -8,32 +8,34 @@
 import Foundation
 
 // MARK: - Protocols
-
 protocol ListViewProtocol: AnyObject {
     func updateView()
 }
 
 protocol ListViewPresenterProtocol {
+    func dismiss()
+    func viewDidLoad()
     func getItem(at index: Int) -> PlaceModel
     func getItemsCount() -> Int
 }
 
 class ListViewPresenter: ListViewPresenterProtocol {
-    
     // MARK: - Properties
-    
     private weak var view: ListViewProtocol?
     private var places = [PlaceModel]()
+    private let router: ListModuleRouterProtocol
     
     // MARK: - Life Cycle Methods
-    
-    init(view: ListViewProtocol, places: [PlaceModel]) {
+    init(view: ListViewProtocol, places: [PlaceModel], router: ListModuleRouterProtocol) {
         self.view = view
         self.places = places
-        self.view?.updateView()
+        self.router = router
     }
     
     // MARK: - Methods
+    func viewDidLoad() {
+        view?.updateView()
+    }
     
     func getItem(at index: Int) -> PlaceModel {
         return places[index]
@@ -41,5 +43,9 @@ class ListViewPresenter: ListViewPresenterProtocol {
     
     func getItemsCount() -> Int {
         return places.count
+    }
+    
+    func dismiss() {
+        router.close()
     }
 }

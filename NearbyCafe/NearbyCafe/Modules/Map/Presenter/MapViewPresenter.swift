@@ -25,18 +25,26 @@ class MapViewPresenter: MapViewPresenterProtocol {
     // MARK: - Properties
     
     private weak var view: MapViewProtocol?
-    private let googleServiceManager = GoogleServicesManager()
     private let router: MapModuleRouterProtocol
-    private let networkManager = NetworkManager()
-    private let locationManager = LocationManager()
+    private let googleServiceManager: GoogleServicesManagerProtocol
+    private let networkManager: NetworkManagerProtocol
+    private var locationManager: LocationManagerProtocol
     private var places = [PlaceModel]()
     private let placeTypes = ["cafe", "restaurant"]
     
     // MARK: - Life Cycle Method
     
-    init(view: MapViewProtocol, router: MapModuleRouterProtocol) {
+    init(view: MapViewProtocol,
+         router: MapModuleRouterProtocol,
+         googleServiceManager: GoogleServicesManagerProtocol,
+         networkManager: NetworkManagerProtocol,
+         locationManager: LocationManagerProtocol
+    ) {
         self.view = view
         self.router = router
+        self.googleServiceManager = googleServiceManager
+        self.networkManager = networkManager
+        self.locationManager = locationManager
     }
     
     // MARK: - Methods

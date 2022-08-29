@@ -15,6 +15,7 @@ protocol LocationManagerDelegateProtocol: AnyObject {
 }
 
 protocol LocationManagerProtocol {
+    var delegate: LocationManagerDelegateProtocol? { get set }
     func startUpdatingLocation()
     func stopUpdatingLocation()
 }

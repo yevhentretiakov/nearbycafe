@@ -20,6 +20,7 @@ final class ListViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         setupTableView()
+        presenter.viewDidLoad()
     }
     
     // MARK: - Methods
@@ -55,6 +56,7 @@ extension ListViewController: UITableViewDataSource {
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        presenter.dismiss()
     }
 }
 
@@ -68,6 +70,6 @@ private extension String {
 
 extension ListViewController: ListViewProtocol {
     func updateView() {
-        // tableView.reloadData()
+        tableView.reloadData()
     }
 }
