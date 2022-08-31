@@ -12,7 +12,7 @@ protocol MapModuleRouter {
     func showPlacesList(with places: [PlaceModel])
 }
 
-final class DefaultMapModuleRouter: BaseRouter, MapModuleRouter {
+final class DefaultMapModuleRouter: DefaultBaseRouter, MapModuleRouter {
     // MARK: - Methods
     func showPlacesList(with places: [PlaceModel]) {
         let listViewController = DefaultListModuleBuilder().createListModule(with: places)

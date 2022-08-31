@@ -11,7 +11,7 @@ import GoogleMaps
 final class MapViewController: UIViewController {
     // MARK: - Properties
     
-    var presenter: MapViewPresenterProtocol!
+    var presenter: DefaultMapViewPresenter!
     
     private var mapView: GMSMapView!
     private let defaultLocation = Location(latitude: -33.869405, longitude: 151.199)
@@ -127,7 +127,7 @@ final class MapViewController: UIViewController {
 
 // MARK: - MapViewProtocol
 
-extension MapViewController: MapViewProtocol {
+extension MapViewController: MapView {
     func updateMap(with places: [PlaceModel], location: Location) {
         addPlacesMarkers(places: places)
         setMapCamera(location: location)

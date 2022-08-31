@@ -10,7 +10,7 @@ import UIKit
 final class ListViewController: UIViewController {
     // MARK: - Properties
     
-    var presenter: ListViewPresenterProtocol!
+    var presenter: ListViewPresenter!
     
     @IBOutlet private weak var tableView: UITableView!
     
@@ -68,7 +68,7 @@ private extension String {
 
 // MARK: - ListViewProtocol
 
-extension ListViewController: ListViewProtocol {
+extension ListViewController: ListView {
     func updateView() {
         tableView.reloadData()
     }

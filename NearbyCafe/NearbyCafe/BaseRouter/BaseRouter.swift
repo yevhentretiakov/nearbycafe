@@ -8,14 +8,14 @@
 import UIKit
 
 // MARK: - Protocols
-protocol BaseRouterProtocol {
+protocol BaseRouter {
     func show(viewController: UIViewController, isModal: Bool, animated: Bool, completion: EmptyBlock?)
     func popToViewController(viewController: UIViewController, animated: Bool, completion: EmptyBlock?)
     func popToRootViewController(animated: Bool, completion: EmptyBlock?)
     func close(animated: Bool, completion: EmptyBlock?)
 }
 
-class BaseRouter: BaseRouterProtocol {
+class DefaultBaseRouter: BaseRouter {
     // MARK: - Properties
     let viewController: UIViewController
     private var navigationController: UINavigationController? {

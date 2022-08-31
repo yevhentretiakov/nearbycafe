@@ -10,34 +10,34 @@ import CoreLocation
 
 // MARK: - Protocols
 
-protocol MapViewProtocol: AnyObject {
+protocol MapView: AnyObject {
     func updateMap(with places: [PlaceModel], location: Location)
     func presentAlert(title: String, message: String)
 }
 
-protocol MapViewPresenterProtocol {
+protocol MapViewPresenter {
     func viewDidLoad()
     func checkLocationManagerAuthorization()
     func showPlacesList()
 }
 
-final class MapViewPresenter: MapViewPresenterProtocol {
+final class DefaultMapViewPresenter: MapViewPresenter {
     // MARK: - Properties
     
-    private weak var view: MapViewProtocol?
+    private weak var view: MapView?
     private let router: MapModuleRouter
-    private let googleServiceManager = GoogleServicesManager()
-    private let networkManager: NetworkManagerProtocol
-    private var locationManager: LocationManagerProtocol
+    private let googleServiceManager = DefaultGoogleServicesManager()
+    private let networkManager: NetworkManager
+    private var locationManager: LocationManager
     private var places = [PlaceModel]()
     private let placeTypes = ["cafe", "restaurant"]
     
     // MARK: - Life Cycle Method
     
-    init(view: MapViewProtocol,
+    init(view: MapView,
          router: MapModuleRouter,
-         networkManager: NetworkManagerProtocol,
-         locationManager: LocationManagerProtocol
+         networkManager: NetworkManager,
+         locationManager: LocationManager
     ) {
         self.view = view
         self.router = router
@@ -84,7 +84,7 @@ final class MapViewPresenter: MapViewPresenterProtocol {
 
 // MARK: - LocationManagerDelegateProtocol
 
-extension MapViewPresenter: LocationManagerDelegateProtocol {
+extension DefaultMapViewPresenter: LocationManagerDelegate {
     func didReceiveLocation(location: CLLocation) {
         getPlaces(location: Location(latitude: location.coordinate.latitude,
                                      longitude: location.coordinate.longitude))

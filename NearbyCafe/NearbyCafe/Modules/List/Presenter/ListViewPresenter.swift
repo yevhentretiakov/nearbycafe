@@ -8,25 +8,25 @@
 import Foundation
 
 // MARK: - Protocols
-protocol ListViewProtocol: AnyObject {
+protocol ListView: AnyObject {
     func updateView()
 }
 
-protocol ListViewPresenterProtocol {
+protocol ListViewPresenter {
     func close()
     func viewDidLoad()
     func getItem(at index: Int) -> PlaceModel
     func getItemsCount() -> Int
 }
 
-final class ListViewPresenter: ListViewPresenterProtocol {
+final class DefaultListViewPresenter: ListViewPresenter {
     // MARK: - Properties
-    private weak var view: ListViewProtocol?
+    private weak var view: ListView?
     private var places = [PlaceModel]()
     private let router: ListModuleRouter
     
     // MARK: - Life Cycle Methods
-    init(view: ListViewProtocol, places: [PlaceModel], router: ListModuleRouter) {
+    init(view: ListView, places: [PlaceModel], router: ListModuleRouter) {
         self.view = view
         self.places = places
         self.router = router

@@ -17,7 +17,7 @@ final class DefaultListModuleBuilder: ListModuleBuilder {
     func createListModule(with places: [PlaceModel]) -> UIViewController {
         let view = ListViewController()
         let router = DefaultListModuleRouter(viewController: view)
-        let presenter = ListViewPresenter(view: view, places: places, router: router)
+        let presenter = DefaultListViewPresenter(view: view, places: places, router: router)
         view.presenter = presenter
         return view
     }

@@ -12,6 +12,6 @@ protocol ListModuleRouter {
     func close(animated: Bool, completion: EmptyBlock?)
 }
 
-final class DefaultListModuleRouter: BaseRouter, ListModuleRouter {
+final class DefaultListModuleRouter: DefaultBaseRouter, ListModuleRouter {
 
 }

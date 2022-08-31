@@ -19,9 +19,9 @@ final class DefaultMapModuleBuilder: MapModuleBuilder {
     func createMapModule() -> UIViewController {
         let view = MapViewController()
         let router = DefaultMapModuleRouter(viewController: view)
-        let networkManager = NetworkManager()
-        let locationManager = LocationManager()
-        let presenter = MapViewPresenter(view: view,
+        let networkManager = DefaultNetworkManager()
+        let locationManager = DefaultLocationManager()
+        let presenter = DefaultMapViewPresenter(view: view,
                                          router: router,
                                          networkManager: networkManager,
                                          locationManager: locationManager)

@@ -10,11 +10,11 @@ import Foundation
 
 // MARK: - Protocols
 
-protocol GoogleServicesManagerProtocol {
+protocol GoogleServicesManager {
     func configure()
 }
 
-final class GoogleServicesManager: GoogleServicesManagerProtocol {
+final class DefaultGoogleServicesManager: GoogleServicesManager {
     
     // MARK: - Life Cycle Methods
     

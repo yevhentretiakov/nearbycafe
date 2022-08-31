@@ -10,22 +10,22 @@ import CoreLocation
 
 // MARK: - Protocols
 
-protocol LocationManagerDelegateProtocol: AnyObject {
+protocol LocationManagerDelegate: AnyObject {
     func didReceiveLocation(location: CLLocation)
 }
 
-protocol LocationManagerProtocol {
-    func setDelegate(_ delegate: LocationManagerDelegateProtocol)
+protocol LocationManager {
+    func setDelegate(_ delegate: LocationManagerDelegate)
     func checkLocationManagerAuthorization()
     func stopUpdatingLocation()
 }
 
-final class LocationManager: NSObject, LocationManagerProtocol {
+final class DefaultLocationManager: NSObject, LocationManager {
     
     // MARK: - Properties
     private let locationManager = CLLocationManager()
     private(set) var currentLocation: CLLocation?
-    private weak var delegate: LocationManagerDelegateProtocol?
+    private weak var delegate: LocationManagerDelegate?
     
     // MARK: - Life Cycle Methods
     
@@ -48,7 +48,7 @@ final class LocationManager: NSObject, LocationManagerProtocol {
             case .authorizedAlways, .authorizedWhenInUse, .authorized:
                 locationManager.startUpdatingLocation()
             default:
-                LocationManager.showLocationAlert()
+                DefaultLocationManager.showLocationAlert()
             }
         }
     }
@@ -57,7 +57,7 @@ final class LocationManager: NSObject, LocationManagerProtocol {
         locationManager.stopUpdatingLocation()
     }
     
-    func setDelegate(_ delegate: LocationManagerDelegateProtocol) {
+    func setDelegate(_ delegate: LocationManagerDelegate) {
         self.delegate = delegate
     }
     
@@ -74,7 +74,7 @@ final class LocationManager: NSObject, LocationManagerProtocol {
 
 // MARK: - CLLocationManagerDelegate
 
-extension LocationManager: CLLocationManagerDelegate {
+extension DefaultLocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             stopUpdatingLocation()
