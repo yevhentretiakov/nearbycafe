@@ -2,7 +2,7 @@
 //  ApiEndpoint.swift
 //  NearbyCafe
 //
-//  Created by user on 17.08.2022.
+//  Created by Yevhen Tretiakov on 17.08.2022.
 //
 
 import Foundation

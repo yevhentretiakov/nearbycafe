@@ -20,9 +20,9 @@
 		CE3F869028A3C99600F59D39 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F868E28A3C99600F59D39 /* ListTableViewCell.swift */; };
 		CE3F869128A3C99600F59D39 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3F868F28A3C99600F59D39 /* ListTableViewCell.xib */; };
 		CE4C1EC828B8BFF50010BA64 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C1EC728B8BFF50010BA64 /* Location.swift */; };
-		CE4C1ECB28B8CEEA0010BA64 /* MapModuleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C1ECA28B8CEEA0010BA64 /* MapModuleRouter.swift */; };
-		CE4C1ECD28B8CF040010BA64 /* MapModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C1ECC28B8CF040010BA64 /* MapModuleBuilder.swift */; };
-		CE4C1ED228B8D51F0010BA64 /* ListModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C1ED128B8D51F0010BA64 /* ListModuleBuilder.swift */; };
+		CE4C1ECB28B8CEEA0010BA64 /* DefaultMapModuleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C1ECA28B8CEEA0010BA64 /* DefaultMapModuleRouter.swift */; };
+		CE4C1ECD28B8CF040010BA64 /* DefaultMapModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C1ECC28B8CF040010BA64 /* DefaultMapModuleBuilder.swift */; };
+		CE4C1ED228B8D51F0010BA64 /* DefaultListModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C1ED128B8D51F0010BA64 /* DefaultListModuleBuilder.swift */; };
 		CE5D7BF628A275A200F7CEE9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D7BF528A275A200F7CEE9 /* NetworkManager.swift */; };
 		CE5D7BF928A275D400F7CEE9 /* PlaceListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D7BF828A275D400F7CEE9 /* PlaceListResponse.swift */; };
 		CE7F4C6A28A645CD001EA9C6 /* EnvironmentConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C6928A645CD001EA9C6 /* EnvironmentConfig.swift */; };
@@ -35,8 +35,8 @@
 		CED9527A28AF78D3002BAFF5 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9527928AF78D3002BAFF5 /* RoundButton.swift */; };
 		CEEF82C528B614F700FA1DDB /* ListViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF82C428B614F700FA1DDB /* ListViewPresenter.swift */; };
 		CEEF82CB28B62EB000FA1DDB /* CompletionBlocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF82CA28B62EB000FA1DDB /* CompletionBlocks.swift */; };
-		CEF0126D28BCA6CD0087C818 /* ListModuleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0126C28BCA6CD0087C818 /* ListModuleRouter.swift */; };
-		CEF0127028BCB3AB0087C818 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0126F28BCB3AB0087C818 /* MainRouter.swift */; };
+		CEF0126D28BCA6CD0087C818 /* DefaultListModuleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0126C28BCA6CD0087C818 /* DefaultListModuleRouter.swift */; };
+		CEF0127028BCB3AB0087C818 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0126F28BCB3AB0087C818 /* BaseRouter.swift */; };
 		CEF2FC9528AA6361003D1BC6 /* GoogleServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2FC9428AA6361003D1BC6 /* GoogleServicesManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,9 +58,9 @@
 		CE3F868E28A3C99600F59D39 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		CE3F868F28A3C99600F59D39 /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 		CE4C1EC728B8BFF50010BA64 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		CE4C1ECA28B8CEEA0010BA64 /* MapModuleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModuleRouter.swift; sourceTree = "<group>"; };
-		CE4C1ECC28B8CF040010BA64 /* MapModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModuleBuilder.swift; sourceTree = "<group>"; };
-		CE4C1ED128B8D51F0010BA64 /* ListModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModuleBuilder.swift; sourceTree = "<group>"; };
+		CE4C1ECA28B8CEEA0010BA64 /* DefaultMapModuleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMapModuleRouter.swift; sourceTree = "<group>"; };
+		CE4C1ECC28B8CF040010BA64 /* DefaultMapModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMapModuleBuilder.swift; sourceTree = "<group>"; };
+		CE4C1ED128B8D51F0010BA64 /* DefaultListModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultListModuleBuilder.swift; sourceTree = "<group>"; };
 		CE5D7BF528A275A200F7CEE9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CE5D7BF828A275D400F7CEE9 /* PlaceListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListResponse.swift; sourceTree = "<group>"; };
 		CE7F4C6928A645CD001EA9C6 /* EnvironmentConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentConfig.swift; sourceTree = "<group>"; };
@@ -73,8 +73,8 @@
 		CED9527928AF78D3002BAFF5 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		CEEF82C428B614F700FA1DDB /* ListViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewPresenter.swift; sourceTree = "<group>"; };
 		CEEF82CA28B62EB000FA1DDB /* CompletionBlocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionBlocks.swift; sourceTree = "<group>"; };
-		CEF0126C28BCA6CD0087C818 /* ListModuleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModuleRouter.swift; sourceTree = "<group>"; };
-		CEF0126F28BCB3AB0087C818 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
+		CEF0126C28BCA6CD0087C818 /* DefaultListModuleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultListModuleRouter.swift; sourceTree = "<group>"; };
+		CEF0126F28BCB3AB0087C818 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		CEF2FC9428AA6361003D1BC6 /* GoogleServicesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleServicesManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,7 +126,7 @@
 		CE30DB4A28A10743007F4DC0 /* NearbyCafe */ = {
 			isa = PBXGroup;
 			children = (
-				CEF0126E28BCB36C0087C818 /* MainRouter */,
+				CEF0126E28BCB36C0087C818 /* BaseRouter */,
 				CE7F4C5E28A634EC001EA9C6 /* Application */,
 				CE7F4C5F28A6351E001EA9C6 /* Modules */,
 				CE7F4C6628A63811001EA9C6 /* Managers */,
@@ -325,7 +325,7 @@
 		CEF0126828BCA6170087C818 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				CE4C1ECA28B8CEEA0010BA64 /* MapModuleRouter.swift */,
+				CE4C1ECA28B8CEEA0010BA64 /* DefaultMapModuleRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -333,7 +333,7 @@
 		CEF0126928BCA6210087C818 /* Builder */ = {
 			isa = PBXGroup;
 			children = (
-				CE4C1ECC28B8CF040010BA64 /* MapModuleBuilder.swift */,
+				CE4C1ECC28B8CF040010BA64 /* DefaultMapModuleBuilder.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
@@ -341,7 +341,7 @@
 		CEF0126A28BCA6340087C818 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				CEF0126C28BCA6CD0087C818 /* ListModuleRouter.swift */,
+				CEF0126C28BCA6CD0087C818 /* DefaultListModuleRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -349,17 +349,17 @@
 		CEF0126B28BCA64B0087C818 /* Builder */ = {
 			isa = PBXGroup;
 			children = (
-				CE4C1ED128B8D51F0010BA64 /* ListModuleBuilder.swift */,
+				CE4C1ED128B8D51F0010BA64 /* DefaultListModuleBuilder.swift */,
 			);
 			path = Builder;
 			sourceTree = "<group>";
 		};
-		CEF0126E28BCB36C0087C818 /* MainRouter */ = {
+		CEF0126E28BCB36C0087C818 /* BaseRouter */ = {
 			isa = PBXGroup;
 			children = (
-				CEF0126F28BCB3AB0087C818 /* MainRouter.swift */,
+				CEF0126F28BCB3AB0087C818 /* BaseRouter.swift */,
 			);
-			path = MainRouter;
+			path = BaseRouter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -481,7 +481,7 @@
 			files = (
 				CE3C28FA28B5054600C71A4C /* MapViewPresenter.swift in Sources */,
 				CED9527A28AF78D3002BAFF5 /* RoundButton.swift in Sources */,
-				CEF0127028BCB3AB0087C818 /* MainRouter.swift in Sources */,
+				CEF0127028BCB3AB0087C818 /* BaseRouter.swift in Sources */,
 				CEF2FC9528AA6361003D1BC6 /* GoogleServicesManager.swift in Sources */,
 				CE7F4C6F28A6574E001EA9C6 /* UIApplication+Extensions.swift in Sources */,
 				CE30DB4C28A10743007F4DC0 /* AppDelegate.swift in Sources */,
@@ -495,15 +495,15 @@
 				CE4C1EC828B8BFF50010BA64 /* Location.swift in Sources */,
 				CE5D7BF628A275A200F7CEE9 /* NetworkManager.swift in Sources */,
 				CE3F868828A3BF7000F59D39 /* ListViewController.swift in Sources */,
-				CE4C1ECD28B8CF040010BA64 /* MapModuleBuilder.swift in Sources */,
-				CE4C1ECB28B8CEEA0010BA64 /* MapModuleRouter.swift in Sources */,
-				CE4C1ED228B8D51F0010BA64 /* ListModuleBuilder.swift in Sources */,
+				CE4C1ECD28B8CF040010BA64 /* DefaultMapModuleBuilder.swift in Sources */,
+				CE4C1ECB28B8CEEA0010BA64 /* DefaultMapModuleRouter.swift in Sources */,
+				CE4C1ED228B8D51F0010BA64 /* DefaultListModuleBuilder.swift in Sources */,
 				CE30DB4E28A10743007F4DC0 /* SceneDelegate.swift in Sources */,
 				CE7F4C7328A68751001EA9C6 /* LocationManager.swift in Sources */,
 				CE7F4C6A28A645CD001EA9C6 /* EnvironmentConfig.swift in Sources */,
 				CE5D7BF928A275D400F7CEE9 /* PlaceListResponse.swift in Sources */,
 				CE7F4C7128A676AB001EA9C6 /* UIView+Extensions.swift in Sources */,
-				CEF0126D28BCA6CD0087C818 /* ListModuleRouter.swift in Sources */,
+				CEF0126D28BCA6CD0087C818 /* DefaultListModuleRouter.swift in Sources */,
 				CE3F869028A3C99600F59D39 /* ListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

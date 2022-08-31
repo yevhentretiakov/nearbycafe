@@ -2,7 +2,7 @@
 //  Presenter.swift
 //  NearbyCafe
 //
-//  Created by user on 23.08.2022.
+//  Created by Yevhen Tretiakov on 23.08.2022.
 //
 
 import UIKit
@@ -17,16 +17,16 @@ protocol MapViewProtocol: AnyObject {
 
 protocol MapViewPresenterProtocol {
     func viewDidLoad()
-    func startUpdatingLocation()
+    func checkLocationManagerAuthorization()
     func showPlacesList()
 }
 
-class MapViewPresenter: MapViewPresenterProtocol {
+final class MapViewPresenter: MapViewPresenterProtocol {
     // MARK: - Properties
     
     private weak var view: MapViewProtocol?
-    private let router: MapModuleRouterProtocol
-    private let googleServiceManager: GoogleServicesManagerProtocol
+    private let router: MapModuleRouter
+    private let googleServiceManager = GoogleServicesManager()
     private let networkManager: NetworkManagerProtocol
     private var locationManager: LocationManagerProtocol
     private var places = [PlaceModel]()
@@ -35,14 +35,12 @@ class MapViewPresenter: MapViewPresenterProtocol {
     // MARK: - Life Cycle Method
     
     init(view: MapViewProtocol,
-         router: MapModuleRouterProtocol,
-         googleServiceManager: GoogleServicesManagerProtocol,
+         router: MapModuleRouter,
          networkManager: NetworkManagerProtocol,
          locationManager: LocationManagerProtocol
     ) {
         self.view = view
         self.router = router
-        self.googleServiceManager = googleServiceManager
         self.networkManager = networkManager
         self.locationManager = locationManager
     }
@@ -71,16 +69,16 @@ class MapViewPresenter: MapViewPresenterProtocol {
     }
     
     func viewDidLoad() {
-        locationManager.delegate = self
-        locationManager.startUpdatingLocation()
+        locationManager.setDelegate(self)
+        locationManager.checkLocationManagerAuthorization()
     }
     
-    func startUpdatingLocation() {
-        locationManager.startUpdatingLocation()
+    func checkLocationManagerAuthorization() {
+        locationManager.checkLocationManagerAuthorization()
     }
     
     func showPlacesList() {
-        router.showPlacesList(places: places)
+        router.showPlacesList(with: places)
     }
 }
 

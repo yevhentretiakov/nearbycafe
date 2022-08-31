@@ -2,7 +2,7 @@
 //  MapViewPresenter.swift
 //  NearbyCafe
 //
-//  Created by user on 24.08.2022.
+//  Created by Yevhen Tretiakov on 24.08.2022.
 //
 
 import Foundation
@@ -13,20 +13,20 @@ protocol ListViewProtocol: AnyObject {
 }
 
 protocol ListViewPresenterProtocol {
-    func dismiss()
+    func close()
     func viewDidLoad()
     func getItem(at index: Int) -> PlaceModel
     func getItemsCount() -> Int
 }
 
-class ListViewPresenter: ListViewPresenterProtocol {
+final class ListViewPresenter: ListViewPresenterProtocol {
     // MARK: - Properties
     private weak var view: ListViewProtocol?
     private var places = [PlaceModel]()
-    private let router: ListModuleRouterProtocol
+    private let router: ListModuleRouter
     
     // MARK: - Life Cycle Methods
-    init(view: ListViewProtocol, places: [PlaceModel], router: ListModuleRouterProtocol) {
+    init(view: ListViewProtocol, places: [PlaceModel], router: ListModuleRouter) {
         self.view = view
         self.places = places
         self.router = router
@@ -45,7 +45,7 @@ class ListViewPresenter: ListViewPresenterProtocol {
         return places.count
     }
     
-    func dismiss() {
-        router.close()
+    func close() {
+        router.close(animated: true, completion: nil)
     }
 }

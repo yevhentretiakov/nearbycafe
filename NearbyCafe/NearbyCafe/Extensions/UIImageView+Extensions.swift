@@ -2,7 +2,7 @@
 //  UIImageView+Extensions.swift
 //  NearbyCafe
 //
-//  Created by user on 22.08.2022.
+//  Created by Yevhen Tretiakov on 22.08.2022.
 //
 
 import UIKit

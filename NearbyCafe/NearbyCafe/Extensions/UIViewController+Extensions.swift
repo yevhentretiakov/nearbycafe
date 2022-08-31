@@ -2,7 +2,7 @@
 //  UIViewController.swift
 //  NearbyCafe
 //
-//  Created by user on 12.08.2022.
+//  Created by Yevhen Tretiakov on 12.08.2022.
 //
 
 import UIKit
@@ -20,5 +20,8 @@ extension UIViewController {
         }
         
         self.present(alert, animated: true, completion: nil)
+    }
+    var isModal: Bool {
+        self.presentingViewController != nil ? true : false
     }
 }

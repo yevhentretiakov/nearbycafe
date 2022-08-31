@@ -2,33 +2,31 @@
 //  MapAssembly.swift
 //  NearbyCafe
 //
-//  Created by user on 26.08.2022.
+//  Created by Yevhen Tretiakov on 26.08.2022.
 //
 
 import UIKit
 
 // MARK: - Protocol
 
-protocol MapModuleBuilderProtocol {
+protocol MapModuleBuilder {
     func createMapModule() -> UIViewController
 }
 
-class MapModuleBuilder: MapModuleBuilderProtocol {
+final class DefaultMapModuleBuilder: MapModuleBuilder {
     // MARK: - Methods
     
     func createMapModule() -> UIViewController {
         let view = MapViewController()
-        let router = MapModuleRouter(viewController: view)
-        let googleServiceManager = GoogleServicesManager()
+        let router = DefaultMapModuleRouter(viewController: view)
         let networkManager = NetworkManager()
         let locationManager = LocationManager()
         let presenter = MapViewPresenter(view: view,
                                          router: router,
-                                         googleServiceManager: googleServiceManager,
                                          networkManager: networkManager,
                                          locationManager: locationManager)
         view.presenter = presenter
-        return view
+        return UINavigationController(rootViewController: view)
     }
 }
 

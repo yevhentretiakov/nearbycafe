@@ -2,7 +2,7 @@
 //  LocationManager.swift
 //  NearbyCafe
 //
-//  Created by user on 12.08.2022.
+//  Created by Yevhen Tretiakov on 12.08.2022.
 //
 
 import UIKit
@@ -15,18 +15,17 @@ protocol LocationManagerDelegateProtocol: AnyObject {
 }
 
 protocol LocationManagerProtocol {
-    var delegate: LocationManagerDelegateProtocol? { get set }
-    func startUpdatingLocation()
+    func setDelegate(_ delegate: LocationManagerDelegateProtocol)
+    func checkLocationManagerAuthorization()
     func stopUpdatingLocation()
 }
 
-class LocationManager: NSObject, LocationManagerProtocol {
+final class LocationManager: NSObject, LocationManagerProtocol {
     
     // MARK: - Properties
-    
     private let locationManager = CLLocationManager()
     private(set) var currentLocation: CLLocation?
-    weak var delegate: LocationManagerDelegateProtocol?
+    private weak var delegate: LocationManagerDelegateProtocol?
     
     // MARK: - Life Cycle Methods
     
@@ -41,7 +40,7 @@ class LocationManager: NSObject, LocationManagerProtocol {
         locationManager.delegate = self
     }
     
-    func startUpdatingLocation() {
+    func checkLocationManagerAuthorization() {
         if CLLocationManager.locationServicesEnabled() {
             switch locationManager.authorizationStatus {
             case .notDetermined:
@@ -56,6 +55,10 @@ class LocationManager: NSObject, LocationManagerProtocol {
     
     func stopUpdatingLocation() {
         locationManager.stopUpdatingLocation()
+    }
+    
+    func setDelegate(_ delegate: LocationManagerDelegateProtocol) {
+        self.delegate = delegate
     }
     
     private static func showLocationAlert() {
@@ -81,6 +84,6 @@ extension LocationManager: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        startUpdatingLocation()
+        checkLocationManagerAuthorization()
     }
 }

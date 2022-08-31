@@ -2,7 +2,7 @@
 //  MapViewController.swift
 //  NearbyCafe
 //
-//  Created by user on 08.08.2022.
+//  Created by Yevhen Tretiakov on 08.08.2022.
 //
 
 import UIKit
@@ -79,7 +79,7 @@ final class MapViewController: UIViewController {
     }
     
     @objc private func centerButtonTapped() {
-        presenter.startUpdatingLocation()
+        presenter.checkLocationManagerAuthorization()
     }
     
     @objc private func listButtonTapped() {

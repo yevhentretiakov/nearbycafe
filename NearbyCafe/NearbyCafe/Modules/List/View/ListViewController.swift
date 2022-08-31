@@ -2,7 +2,7 @@
 //  ListViewController.swift
 //  NearbyCafe
 //
-//  Created by user on 10.08.2022.
+//  Created by Yevhen Tretiakov on 10.08.2022.
 //
 
 import UIKit
@@ -56,7 +56,7 @@ extension ListViewController: UITableViewDataSource {
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        presenter.dismiss()
+        presenter.close()
     }
 }
 

@@ -2,7 +2,7 @@
 //  Location.swift
 //  NearbyCafe
 //
-//  Created by user on 26.08.2022.
+//  Created by Yevhen Tretiakov on 26.08.2022.
 //
 
 import Foundation

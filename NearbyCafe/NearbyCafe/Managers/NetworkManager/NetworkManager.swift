@@ -2,7 +2,7 @@
 //  NetworkService.swift
 //  NearbyCafe
 //
-//  Created by user on 09.08.2022.
+//  Created by Yevhen Tretiakov on 09.08.2022.
 //
 
 import UIKit
@@ -17,7 +17,7 @@ protocol NetworkManagerProtocol {
     func get<T: Decodable>(_ returnType: T.Type, from endpoint: ApiEndpoint, completion: @escaping (Result<T?, NetworkError>) -> Void)
 }
 
-class NetworkManager: NetworkManagerProtocol {
+final class NetworkManager: NetworkManagerProtocol {
     
     // MARK: - Properties
     

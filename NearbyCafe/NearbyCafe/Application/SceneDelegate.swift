@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  NearbyCafe
 //
-//  Created by user on 08.08.2022.
+//  Created by Yevhen Tretiakov on 08.08.2022.
 //
 
 import UIKit
@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = UINavigationController(rootViewController: MapModuleBuilder().createMapModule())
+        window?.rootViewController = DefaultMapModuleBuilder().createMapModule()
         window?.makeKeyAndVisible()
     }
     
