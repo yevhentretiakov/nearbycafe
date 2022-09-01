@@ -2,29 +2,22 @@
 //  MapViewController.swift
 //  NearbyCafe
 //
-//  Created by user on 08.08.2022.
+//  Created by Yevhen Tretiakov on 08.08.2022.
 //
 
 import UIKit
 import GoogleMaps
 
 final class MapViewController: UIViewController {
-    
     // MARK: - Properties
     
-    private let locationManager = LocationManager()
-    private let networkService = NetworkManager()
-    private let googleServiceManager = GoogleServicesManager()
-    
-    private var places = [PlaceModel]()
+    var presenter: DefaultMapViewPresenter!
     
     private var mapView: GMSMapView!
-    private let placeTypes = ["cafe", "restaurant"]
+    private let defaultLocation = Location(latitude: -33.869405, longitude: 151.199)
     private let zoomLevel: Float = 12
-    private let defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
     
     private let roundButtonDiameter: CGFloat = 60
-    
     private lazy var centerButton: RoundButton = {
         let button = RoundButton(frame: CGRect(x: 0, y: 0, width: roundButtonDiameter, height: roundButtonDiameter))
         button.setImage(UIImage(systemName: "location.north.fill"), for: .normal)
@@ -39,62 +32,24 @@ final class MapViewController: UIViewController {
         return button
     }()
     
-    
     // MARK: - Life Cycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupMap()
-        setupLocationManager()
+        presenter.viewDidLoad()
     }
     
     // MARK: - View Methods
     
-    private func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.startUpdatingLocation()
-    }
-    
     private func setupMap() {
         // create map view
         mapView = GMSMapView.map(withFrame: view.frame, camera: GMSCameraPosition())
-        setMapCamera(latitude: defaultLocation.coordinate.latitude,
-                     longitude: defaultLocation.coordinate.longitude)
-        
+        setMapCamera(location: defaultLocation)
         mapView.isMyLocationEnabled = true
-        
         layoutMap()
         layoutCenterButton()
         layoutListButton()
-    }
-    
-    private func getPlaces(latitude: Double, longitude: Double) {
-        for type in placeTypes {
-            networkService.get(PlaceListResponse.self,
-                               from: .getNearbyPlaces(latitude: latitude,
-                                                      longitude: longitude,
-                                                      type: type)) {  [weak self] result in
-                guard let self = self else { return }
-                switch result {
-                case .success(let receivedPlaces):
-                    self.places = receivedPlaces?.results ?? []
-                    DispatchQueue.main.async {
-                        self.addPlacesMarkers()
-                    }
-                case .failure(let error):
-                    self.showAlert(title: "Network Error", message: error.rawValue)
-                }
-            }
-        }
-    }
-    
-    private func addPlacesMarkers() {
-        mapView.clear()
-        
-        places.forEach { place in
-            self.addMarker(place: place)
-        }
     }
     
     private func addMarker(place: PlaceModel) {
@@ -107,29 +62,28 @@ final class MapViewController: UIViewController {
         marker.map = mapView
     }
     
-    private func setMapCamera(latitude: Double, longitude: Double) {
+    private func setMapCamera(location: Location) {
         let camera = GMSCameraPosition.camera(
-            withLatitude: latitude,
-            longitude: longitude,
+            withLatitude: location.latitude,
+            longitude: location.longitude,
             zoom: zoomLevel
         )
-        mapView.camera = camera
+        self.mapView.camera = camera
     }
     
-    private func updateMap(latitude: Double, longitude: Double) {
-        getPlaces(latitude: latitude, longitude: longitude)
-        addPlacesMarkers()
-        setMapCamera(latitude: latitude, longitude: longitude)
+    private func addPlacesMarkers(places: [PlaceModel]) {
+        mapView.clear()
+        places.forEach { place in
+            self.addMarker(place: place)
+        }
     }
     
     @objc private func centerButtonTapped() {
-        locationManager.startUpdatingLocation()
+        presenter.checkLocationManagerAuthorization()
     }
     
     @objc private func listButtonTapped() {
-        let viewController = ListViewController()
-        viewController.places = places
-        navigationController?.pushViewController(viewController, animated: true)
+        presenter.showPlacesList()
     }
     
     // MARK: - Layout Methods
@@ -171,13 +125,14 @@ final class MapViewController: UIViewController {
     }
 }
 
-// MARK: - LocationManagerDelegateProtocol
+// MARK: - MapViewProtocol
 
-extension MapViewController: LocationManagerDelegateProtocol {
-    func didReceiveLocation(location: CLLocation) {
-        if let location = locationManager.currentLocation {
-            updateMap(latitude: location.coordinate.latitude,
-                      longitude: location.coordinate.longitude)
-        }
+extension MapViewController: MapView {
+    func updateMap(with places: [PlaceModel], location: Location) {
+        addPlacesMarkers(places: places)
+        setMapCamera(location: location)
+    }
+    func presentAlert(title: String, message: String) {
+        showAlert(title: title, message: message)
     }
 }

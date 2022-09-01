@@ -2,7 +2,7 @@
 //  ErrorMessage.swift
 //  NearbyCafe
 //
-//  Created by user on 10.08.2022.
+//  Created by Yevhen Tretiakov on 10.08.2022.
 //
 
 import Foundation

@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  NearbyCafe
 //
-//  Created by user on 08.08.2022.
+//  Created by Yevhen Tretiakov on 08.08.2022.
 //
 
 import UIKit

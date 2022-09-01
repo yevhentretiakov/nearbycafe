@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  NearbyCafe
 //
-//  Created by user on 08.08.2022.
+//  Created by Yevhen Tretiakov on 08.08.2022.
 //
 
 import UIKit
@@ -18,12 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func setupRootView(scene: UIScene) {
-        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let navigationController = UINavigationController(rootViewController: MapViewController())
-        window?.rootViewController = navigationController
+        window?.rootViewController = DefaultMapModuleBuilder().createMapModule()
         window?.makeKeyAndVisible()
     }
     

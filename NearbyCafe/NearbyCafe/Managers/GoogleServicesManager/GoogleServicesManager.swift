@@ -2,7 +2,7 @@
 //  GoogleServicesManager.swift
 //  NearbyCafe
 //
-//  Created by user on 15.08.2022.
+//  Created by Yevhen Tretiakov on 15.08.2022.
 //
 
 import GoogleMaps
@@ -10,11 +10,11 @@ import Foundation
 
 // MARK: - Protocols
 
-protocol GoogleServicesManagerProtocol {
+protocol GoogleServicesManager {
     func configure()
 }
 
-class GoogleServicesManager {
+final class DefaultGoogleServicesManager: GoogleServicesManager {
     
     // MARK: - Life Cycle Methods
     

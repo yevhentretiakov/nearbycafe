@@ -2,7 +2,7 @@
 //  NetworkService.swift
 //  NearbyCafe
 //
-//  Created by user on 09.08.2022.
+//  Created by Yevhen Tretiakov on 09.08.2022.
 //
 
 import UIKit
@@ -13,11 +13,11 @@ protocol HTTPRequest {
     var url: String { get }
 }
 
-protocol NetworkManagerProtocol {
+protocol NetworkManager {
     func get<T: Decodable>(_ returnType: T.Type, from endpoint: ApiEndpoint, completion: @escaping (Result<T?, NetworkError>) -> Void)
 }
 
-class NetworkManager: NetworkManagerProtocol {
+final class DefaultNetworkManager: NetworkManager {
     
     // MARK: - Properties
     
@@ -53,7 +53,7 @@ class NetworkManager: NetworkManagerProtocol {
             }
             
             do {
-                let decodedData = try NetworkManager.decoder.decode(T.self, from: data)
+                let decodedData = try DefaultNetworkManager.decoder.decode(T.self, from: data)
                 completion(.success(decodedData))
             } catch {
                 completion(.failure(.invalidData))

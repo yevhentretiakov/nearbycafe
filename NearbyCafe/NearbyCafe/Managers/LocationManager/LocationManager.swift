@@ -2,7 +2,7 @@
 //  LocationManager.swift
 //  NearbyCafe
 //
-//  Created by user on 12.08.2022.
+//  Created by Yevhen Tretiakov on 12.08.2022.
 //
 
 import UIKit
@@ -10,22 +10,22 @@ import CoreLocation
 
 // MARK: - Protocols
 
-protocol LocationManagerDelegateProtocol: AnyObject {
+protocol LocationManagerDelegate: AnyObject {
     func didReceiveLocation(location: CLLocation)
 }
 
-protocol LocationManagerProtocol {
-    func startUpdatingLocation()
+protocol LocationManager {
+    func setDelegate(_ delegate: LocationManagerDelegate)
+    func checkLocationManagerAuthorization()
     func stopUpdatingLocation()
 }
 
-class LocationManager: NSObject, LocationManagerProtocol {
+final class DefaultLocationManager: NSObject, LocationManager {
     
     // MARK: - Properties
-    
     private let locationManager = CLLocationManager()
     private(set) var currentLocation: CLLocation?
-    weak var delegate: LocationManagerDelegateProtocol?
+    private weak var delegate: LocationManagerDelegate?
     
     // MARK: - Life Cycle Methods
     
@@ -40,7 +40,7 @@ class LocationManager: NSObject, LocationManagerProtocol {
         locationManager.delegate = self
     }
     
-    func startUpdatingLocation() {
+    func checkLocationManagerAuthorization() {
         if CLLocationManager.locationServicesEnabled() {
             switch locationManager.authorizationStatus {
             case .notDetermined:
@@ -48,13 +48,17 @@ class LocationManager: NSObject, LocationManagerProtocol {
             case .authorizedAlways, .authorizedWhenInUse, .authorized:
                 locationManager.startUpdatingLocation()
             default:
-                LocationManager.showLocationAlert()
+                DefaultLocationManager.showLocationAlert()
             }
         }
     }
     
     func stopUpdatingLocation() {
         locationManager.stopUpdatingLocation()
+    }
+    
+    func setDelegate(_ delegate: LocationManagerDelegate) {
+        self.delegate = delegate
     }
     
     private static func showLocationAlert() {
@@ -70,7 +74,7 @@ class LocationManager: NSObject, LocationManagerProtocol {
 
 // MARK: - CLLocationManagerDelegate
 
-extension LocationManager: CLLocationManagerDelegate {
+extension DefaultLocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             stopUpdatingLocation()
@@ -80,6 +84,6 @@ extension LocationManager: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        startUpdatingLocation()
+        checkLocationManagerAuthorization()
     }
 }
