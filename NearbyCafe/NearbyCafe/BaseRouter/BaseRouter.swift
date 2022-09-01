@@ -30,7 +30,7 @@ class DefaultBaseRouter: BaseRouter {
     // MARK: - Methods
     func show(viewController: UIViewController, isModal: Bool, animated: Bool, completion: EmptyBlock? = nil) {
         if isModal {
-            let presentingViewController = navigationController ?? viewController
+            let presentingViewController = navigationController ?? self.viewController
             presentingViewController.present(viewController,
                                              animated: animated,
                                              completion: completion)
