@@ -21,7 +21,10 @@ extension UIViewController {
         
         self.present(alert, animated: true, completion: nil)
     }
+    
     var isModal: Bool {
-        self.presentingViewController != nil ? true : false
+        let presentingIsModal = presentingViewController != nil
+        let presentingIsNavigation = navigationController?.presentingViewController?.presentedViewController == navigationController
+        return presentingIsModal || presentingIsNavigation
     }
 }

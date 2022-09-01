@@ -30,6 +30,7 @@
 		CE7F4C6F28A6574E001EA9C6 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C6E28A6574E001EA9C6 /* UIApplication+Extensions.swift */; };
 		CE7F4C7128A676AB001EA9C6 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C7028A676AB001EA9C6 /* UIView+Extensions.swift */; };
 		CE7F4C7328A68751001EA9C6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F4C7228A68751001EA9C6 /* LocationManager.swift */; };
+		CE8BDEAD28C0A1440066E78B /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8BDEAC28C0A1440066E78B /* UINavigationController+Extensions.swift */; };
 		CEB148F728B37D40006A3C45 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB148F628B37D40006A3C45 /* UIImageView+Extensions.swift */; };
 		CECD848428AD172F00038053 /* ApiEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD848328AD172F00038053 /* ApiEndpoint.swift */; };
 		CED9527A28AF78D3002BAFF5 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9527928AF78D3002BAFF5 /* RoundButton.swift */; };
@@ -68,6 +69,7 @@
 		CE7F4C6E28A6574E001EA9C6 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		CE7F4C7028A676AB001EA9C6 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		CE7F4C7228A68751001EA9C6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		CE8BDEAC28C0A1440066E78B /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
 		CEB148F628B37D40006A3C45 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		CECD848328AD172F00038053 /* ApiEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEndpoint.swift; sourceTree = "<group>"; };
 		CED9527928AF78D3002BAFF5 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				CE7F4C6E28A6574E001EA9C6 /* UIApplication+Extensions.swift */,
 				CE7F4C7028A676AB001EA9C6 /* UIView+Extensions.swift */,
 				CEB148F628B37D40006A3C45 /* UIImageView+Extensions.swift */,
+				CE8BDEAC28C0A1440066E78B /* UINavigationController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				CE5D7BF928A275D400F7CEE9 /* PlaceListResponse.swift in Sources */,
 				CE7F4C7128A676AB001EA9C6 /* UIView+Extensions.swift in Sources */,
 				CEF0126D28BCA6CD0087C818 /* DefaultListModuleRouter.swift in Sources */,
+				CE8BDEAD28C0A1440066E78B /* UINavigationController+Extensions.swift in Sources */,
 				CE3F869028A3C99600F59D39 /* ListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,7 +10,7 @@ import UIKit
 // MARK: - Protocols
 protocol BaseRouter {
     func show(viewController: UIViewController, isModal: Bool, animated: Bool, completion: EmptyBlock?)
-    func popToViewController(viewController: UIViewController, animated: Bool, completion: EmptyBlock?)
+    func popToViewController(_ viewController: UIViewController, animated: Bool, completion: EmptyBlock?)
     func popToRootViewController(animated: Bool, completion: EmptyBlock?)
     func close(animated: Bool, completion: EmptyBlock?)
 }
@@ -31,63 +31,41 @@ class DefaultBaseRouter: BaseRouter {
     func show(viewController: UIViewController, isModal: Bool, animated: Bool, completion: EmptyBlock? = nil) {
         if isModal {
             let presentingViewController = navigationController ?? viewController
-            presentingViewController.present(viewController, animated: animated) {
-                completion?()
-            }
+            presentingViewController.present(viewController,
+                                             animated: animated,
+                                             completion: completion)
         } else {
-            navigationController?.pushViewController(viewController, animated: animated)
-            receiveTransitionCompletion {
-                completion?()
-            }
+            navigationController?.pushViewController(viewController,
+                                                     animated: animated,
+                                                     completion: completion)
         }
     }
     
-    func popToViewController(viewController: UIViewController, animated: Bool, completion: EmptyBlock? = nil) {
-        navigationController?.popToViewController(viewController, animated: animated)
-        receiveTransitionCompletion {
-            completion?()
-        }
+    func popToViewController(_ viewController: UIViewController, animated: Bool, completion: EmptyBlock? = nil) {
+        navigationController?.popToViewController(viewController,
+                                                  animated: animated,
+                                                  completion: completion)
     }
     
     func popToRootViewController(animated: Bool, completion: EmptyBlock? = nil) {
-        navigationController?.popToRootViewController(animated: animated)
-        receiveTransitionCompletion {
-            completion?()
-        }
+        navigationController?.popToRootViewController(animated: animated,
+                                                      completion: completion)
     }
     
     func close(animated: Bool, completion: EmptyBlock? = nil) {
         if viewController.isModal {
-            dismiss(animated: animated) {
-                completion?()
-            }
+            dismiss(animated: animated, completion: completion)
         } else {
-            pop(animated: animated) {
-                completion?()
-            }
+            pop(animated: animated, completion: completion)
         }
     }
     
     private func dismiss(animated: Bool, completion: EmptyBlock? = nil) {
-        viewController.dismiss(animated: animated) {
-            completion?()
-        }
+        viewController.dismiss(animated: animated, completion: completion)
     }
     
     private func pop(animated: Bool, completion: EmptyBlock? = nil) {
-        navigationController?.popViewController(animated: animated)
-        receiveTransitionCompletion {
-            completion?()
-        }
-    }
-    
-    private func receiveTransitionCompletion(completion: EmptyBlock?) {
-        if let coordinator = navigationController?.transitionCoordinator {
-            coordinator.animate(alongsideTransition: nil) { _ in
-                completion?()
-            }
-        } else {
-            completion?()
-        }
+        navigationController?.popViewController(animated: animated,
+                                                completion: completion)
     }
 }

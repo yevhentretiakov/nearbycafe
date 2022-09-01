@@ -46,6 +46,6 @@ final class DefaultListViewPresenter: ListViewPresenter {
     }
     
     func close() {
-        router.close(animated: true, completion: nil)
+        router.close()
     }
 }

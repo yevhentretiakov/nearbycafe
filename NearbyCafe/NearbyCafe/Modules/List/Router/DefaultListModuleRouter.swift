@@ -9,9 +9,11 @@ import UIKit
 
 // MARK: - Protocols
 protocol ListModuleRouter {
-    func close(animated: Bool, completion: EmptyBlock?)
+    func close()
 }
 
 final class DefaultListModuleRouter: DefaultBaseRouter, ListModuleRouter {
-
+    func close() {
+        close(animated: true)
+    }
 }
